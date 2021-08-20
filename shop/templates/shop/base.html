@@ -7,6 +7,11 @@
         <link rel="stylesheet" type="text/css" href="{% static 'shop/style.css' %}">
     </head>
     <body>
+        {% if messages %}
+            {% for message in messages %}
+                <div class = "messages">{{ message }}</div>
+            {% endfor %}
+        {% endif %} 
         {% block content %}
 
         {% endblock content %}
