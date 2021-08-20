@@ -41,3 +41,19 @@ html {
 .navbar__profile{
     margin-left: auto;
 }
+
+.form-container {
+    font-size: 1.6rem;
+    max-width: 60rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.form {
+    max-width: 60rem;
+    display: flex;
+    flex-direction: column;
+}
