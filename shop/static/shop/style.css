@@ -15,7 +15,29 @@ html {
 }
 
 .container {
-    width: 80%;
-    height: 80%;
     background-color: pink;
+    margin: 15rem;
+}
+
+.navbar__list{
+    padding: 3rem;
+    display: flex;
+}
+
+.navbar__item{
+    font-size: 2rem;
+}
+
+.navbar__search {
+    margin-left: auto;
+    border: none;
+}
+
+.navbar__search:focus {
+    transition: all .3s;
+    transform: scale(1.1);
+}
+
+.navbar__profile{
+    margin-left: auto;
 }

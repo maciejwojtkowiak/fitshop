@@ -7,12 +7,8 @@
         <link rel="stylesheet" type="text/css" href="{% static 'shop/style.css' %}">
     </head>
     <body>
-        <div class="container">
-            <nav class="navbar">
-                    <a class="navbar__item" href="#">Home</a>
-                    <a class="navbar__item" href="#">Login</a>
-                    <a class="navbar__item" href="#">Profile</a>
-            </nav>
-        </div>
+        {% block content %}
+
+        {% endblock content %}
     </body>
 </html>
