@@ -15,7 +15,7 @@ html {
 }
 
 .container {
-    background-color: pink;
+    background-color: black;
     margin: 15rem;
 }
 
@@ -56,4 +56,9 @@ html {
     max-width: 60rem;
     display: flex;
     flex-direction: column;
+}
+
+.shop {
+    height: 120rem;
+    background-color: peru;
 }

@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
 from django.contrib import messages
+from django.views.generic.list import ListView
+from shop.models import Item
 
 def home(request):
-    return render(request, 'shop/home.html')
+    items = Item.objects.all()
+    args = {'items': items}
+    return render(request, 'shop/home.html', args)
 
 def signup(request):
     if request.method == 'POST':
@@ -16,3 +20,5 @@ def signup(request):
     else: 
         form = SignUpForm()
     return render(request, "shop/signup.html", {'form': form})
+
+
