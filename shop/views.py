@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import SignUpForm
 from django.contrib import messages
 from django.views.generic.list import ListView
-from shop.models import Item
+#from shop.models import Item
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
@@ -37,6 +37,10 @@ def loginView(request):
                 user = form.cleaned_data.get('username')
                 messages.success(request, f"You successfully logged in {user}")
                 return redirect('home-page')
+            else:
+                form = AuthenticationForm()
+        else:
+            form = AuthenticationForm()
     else:
         form = AuthenticationForm()
     return render(request, 'shop/login.html', {'form': form})
@@ -46,6 +50,6 @@ def logout_view(request):
     return redirect('home-page')
 
 def homeView(ListView):
-    model = Item
+    model = tem
 
 
