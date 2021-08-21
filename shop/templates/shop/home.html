@@ -1,5 +1,8 @@
 {% extends 'shop/base.html' %}
 {% block content %}
+<header>
+   
+</header>
 <div class="container">
     <nav class="navbar">
         <div class=navbar__list>
@@ -8,5 +11,10 @@
             <a class="navbar__item navbar__profile" href="#">Login</a>
         </div>
     </nav>
+    <div class="shop">
+        {%for item in items %}
+            <h1>{{ item.title }}</h1>
+        {% endfor %}
+    </div>
 </div>
 {% endblock content %}
