@@ -9,9 +9,9 @@
         <div class='navbar__list'>
             <a class="navbar__home navbar__link" href="#">Home</a>
             <div class = "navbar__search-container">
-                <form class="navbar__search-form" method="GET">
-                    <input class="navbar__search-text" type="search">
-                    <button class="navbar__search-button" type="submit">
+                <form action="{% url 'search-page'%}" class="navbar__search-form" method="GET">
+                    <input name="search" class="navbar__search-text" type="text">
+                    <input type="image" class="navbar__search-button" src="{% static 'images/glass.png' %}" >
                 </form>
             </div>
             {% if user.is_authenticated  %}
@@ -28,7 +28,7 @@
     <div class="shop">
         {% for item in items %}
             <div class = "item-container">
-                <a href="{% url 'detail-page' item.id %}" class="item-image" src="{{item.image.url}}">ej</a>
+                <a href="{% url 'detail-page' item.id %}" class="item-image"><img src="{{item.image.url}}"></a>
                 <h1 class = "item-title">{{ item.title }}</h1>
                 <p class ="item-price">{{ item.price }}</p>
                 <button class = "item-button">Buy</button>

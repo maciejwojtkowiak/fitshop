@@ -3,7 +3,7 @@
 {% block content %}
 <div class = "form-container"> 
     <form class="form" method="POST">{% csrf_token %}
-        <label for="username">Email:</label>
+        <label for="username">Username:</label>
         {{form.username}}
         <label for="password">Passoword:</label>
         {{form.password}}

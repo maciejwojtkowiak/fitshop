@@ -60,4 +60,12 @@ class ShopDetailView(DetailView):
     template_name = 'shop/detail.html'
     context_object_name = 'items'
 
+def searchView(request):
+    if request.method == "GET":
+        context = request.GET.get('search')
+        items = Item.objects.all().filter(title=context)
+
+
+    return render(request, 'shop/search.html', {'items': items})
+
 

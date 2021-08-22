@@ -36,6 +36,7 @@ html {
     padding: 3rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     
 }
 
@@ -52,29 +53,40 @@ html {
     display: flex;
     flex-basis: 33%;
     flex-direction: row;
+    align-items: center;
     justify-content: center;
 }
 
 .navbar__search-form {
     display: flex;
-    flex-basis: 33%;
+    flex-basis: 100%;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .navbar__search-text {
     border: none;
     border-radius: 10px;
-    width: 120%;
-    transform: scaleX(2.3) scaleY(2);
-    border: none;
+    height: 4rem;
+    width: 70%;
+    font-size: 1.8rem;
+    padding: .3rem  .7rem  .3rem .7rem;
     
 }
 
 .navbar__search-text:focus {
     transition: all .3s;
-    transform: scale(2.4);
+    width: 120%;
     outline-style: none;
 }
+
+.navbar__search-button{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: -2rem;
+}
+
 
 .navbar__link{
     text-decoration: none;
