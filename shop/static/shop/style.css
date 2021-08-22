@@ -1,3 +1,9 @@
+/* variables */
+:root{
+    --lightgreen: rgb(40, 185, 40)
+}
+
+
 html {
     font-size: 62.5%;
     box-sizing: border-box;
@@ -15,8 +21,15 @@ html {
 }
 
 .container {
-    background-color: black;
     margin: 15rem;
+}
+
+.navbar {
+    box-shadow: 1px 12px 30px rgba(0, 0, 0, 0.26), 1px 12px 10px rgba(0, 0, 0, 0.178);
+    background-image: linear-gradient(to right,
+    rgba(51, 204, 51, 0.774),
+    rgba(74, 187, 74, 0.753),
+    rgba(58, 151, 58, 0.726));
 }
 
 .navbar__list{
@@ -35,15 +48,41 @@ html {
     font-size: 2rem;
 }
 
-.navbar__search {
-    border: none;
+.navbar__search-container {  
+    display: flex;
     flex-basis: 33%;
-
+    flex-direction: row;
+    justify-content: center;
 }
 
-.navbar__search:focus {
+.navbar__search-form {
+    display: flex;
+    flex-basis: 33%;
+    flex-direction: row;
+}
+
+.navbar__search-text {
+    border: none;
+    border-radius: 10px;
+    width: 120%;
+    transform: scaleX(2.3) scaleY(2);
+    border: none;
+    
+}
+
+.navbar__search-text:focus {
     transition: all .3s;
-    transform: scale(1.1);
+    transform: scale(2.4);
+    outline-style: none;
+}
+
+.navbar__link{
+    text-decoration: none;
+    color: white;
+}
+
+.navbar__register{
+    margin-right: 2.2rem;
 }
 
 
@@ -64,15 +103,20 @@ html {
 }
 
 .shop {
+    padding: 3rem;
     height: 120rem;
-    background-color: peru;
+    box-shadow: 1px 12px 30px rgba(0, 0, 0, 0.26), 1px 12px 10px rgba(0, 0, 0, 0.178);
+    background-color: rgb(255, 255, 255);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
     grid-auto-rows: minmax(100px, auto);
     justify-items: center;
-    
+    z-index: 10;
+}
 
+.item-button {
+    text-decoration: none;
 }
 
 
