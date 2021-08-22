@@ -6,14 +6,17 @@
 </header>
 <div class="container">
     <nav class="navbar">
-        <div class=navbar__list>
-            <a class="navbar__item" href="#">Home</a>
-            <input class="navbar__item navbar__search" type="search">
+        <div class='navbar__list'>
+            <a class="navbar__home" href="#">Home</a>
+            <input class="navbar__search" type="search">
             {% if user.is_authenticated  %}
-            <a class="navbar__item navbar__profile" href="#">Login</a>
+            <a class="navbar__rightside" href="{% url 'logout-page' %}">Logout</a>
             {% endif %}
             {% if not user.is_authenticated  %}
-            <a class="navbar__item navbar__profile" href="{% url 'signup-page'%}">Register</a>
+            <div class="navbar__rightside">
+                <a class="" href="{% url 'signup-page'%}">Register</a>
+                <a class="" href="{% url 'login-page' %}">Login</a>
+            </div>
             {% endif %}
         </div>
     </nav>

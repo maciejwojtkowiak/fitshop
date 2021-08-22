@@ -22,15 +22,23 @@ html {
 .navbar__list{
     padding: 3rem;
     display: flex;
+    justify-content: space-between;
+    
 }
 
-.navbar__item{
+.navbar__home{
+    font-size: 2rem;
+    flex-basis: 33%;
+}
+.navbar__rightside {
+    margin-left: auto;
     font-size: 2rem;
 }
 
 .navbar__search {
-    margin-left: auto;
     border: none;
+    flex-basis: 33%;
+
 }
 
 .navbar__search:focus {
@@ -38,9 +46,6 @@ html {
     transform: scale(1.1);
 }
 
-.navbar__profile{
-    margin-left: auto;
-}
 
 .form-container {
     font-size: 1.6rem;

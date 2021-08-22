@@ -45,7 +45,7 @@ def loginView(request):
         form = AuthenticationForm()
     return render(request, 'shop/login.html', {'form': form})
 
-def logout_view(request):
+def logoutView(request):
     logout(request)
     return redirect('home-page')
 
