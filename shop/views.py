@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import SignUpForm
 from django.contrib import messages
 from django.views.generic.list import ListView
-#from shop.models import Item
+from shop.models import Item
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
@@ -49,7 +49,9 @@ def logout_view(request):
     logout(request)
     return redirect('home-page')
 
-def homeView(ListView):
-    model = tem
+class ShopListView(ListView):
+    model = Item
+    template_name =  'shop/home.html'
+    context_object_name = 'items'
 
 
