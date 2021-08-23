@@ -7,24 +7,34 @@
 <div class="container">
     <nav class="navbar">
         <div class='navbar__list'>
-            <a class="navbar__home navbar__link" href="#">Home</a>
+            <div class="navbar__leftside">
+                    <a class=" navbar__link" href="{% url 'home-page' %}">Home</a>
+                    <input class="sort__checkbox" type="checkbox"> 
+            </div>
             <div class = "navbar__search-container">
                 <form action="{% url 'search-page'%}" class="navbar__search-form" method="GET">
-                    <input name="search" class="navbar__search-text" type="text">
-                    <input type="image" class="navbar__search-button" src="{% static 'images/glass.png' %}" >
+                    <input name="search" class="navbar__search-text" type="text" placeholder="Search for an item.">
                 </form>
             </div>
             {% if user.is_authenticated  %}
-            <a class="navbar__rightside navbar__link" href="{% url 'logout-page' %}">Logout</a>
+                <a class="navbar__rightside navbar__link" href="{% url 'logout-page' %}">Logout</a>
             {% endif %}
             {% if not user.is_authenticated  %}
-            <div class="navbar__rightside">
-                <a class="navbar__link navbar__register" href="{% url 'signup-page'%}">Register</a>
-                <a class="navbar__link" href="{% url 'login-page' %}">Login</a>
-            </div>
+                <div class="navbar__rightside">
+                    <a class="navbar__link navbar__register" href="{% url 'signup-page'%}">Register</a>
+                    <a class="navbar__link" href="{% url 'login-page' %}">Login</a>
+                </div>
             {% endif %}
         </div>
     </nav>
+    <form class = "sort__form" method="GET" action="{% url 'sort-page' %}">
+        <h1 class="sort__header"> SORT ITEMS </h1>
+        <input type="range" name="range" class="sort__input">
+        <div class="sort__prices">
+            <input class="sort__min-price" type="text" name="min-price" placeholder="minimum price">
+            <input class="sort__max-price" type="text" name="max-price" placeholder="maximum price">
+         </div>
+    </form>
     <div class="shop">
         {% for item in items %}
             <div class = "item-container">

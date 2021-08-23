@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import ShopListView, ShopDetailView, searchView
+from .views import ShopListView, ShopDetailView
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -11,5 +11,6 @@ urlpatterns = [
     path('login', views.loginView, name='login-page'),
     path('logout', views.logoutView, name='logout-page'),
     path('detail/<int:pk>/', ShopDetailView.as_view(), name='detail-page'),
-    path('search', views.searchView, name='search-page')
+    path('search/', views.searchView, name='search-page'),
+    path('sort/', views.sortView, name='sort-page'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -63,9 +63,10 @@ class ShopDetailView(DetailView):
 def searchView(request):
     if request.method == "GET":
         context = request.GET.get('search')
-        items = Item.objects.all().filter(title=context)
-
+        items = Item.objects.all().filter(title__icontains=context)
 
     return render(request, 'shop/search.html', {'items': items})
 
+def sortView(request):
+    return render(request, 'shop/sort.html')
 

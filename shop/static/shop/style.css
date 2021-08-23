@@ -20,16 +20,25 @@ html {
     box-sizing: inherit;
 }
 
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .container {
     margin: 15rem;
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
 }
 
 .navbar {
-    box-shadow: 1px 12px 30px rgba(0, 0, 0, 0.26), 1px 12px 10px rgba(0, 0, 0, 0.178);
+    box-shadow: 1px 1px 17px rgba(0, 0, 0, 0.26), 1px 12px 50px rgba(0, 0, 0, 0.178);
     background-image: linear-gradient(to right,
-    rgba(51, 204, 51, 0.774),
+    rgba(47, 194, 47, 0.774),
     rgba(74, 187, 74, 0.753),
-    rgba(58, 151, 58, 0.726));
+    rgba(75, 196, 75, 0.726));
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+    font-size: 2.5rem;
 }
 
 .navbar__list{
@@ -40,26 +49,16 @@ html {
     
 }
 
-.navbar__home{
-    font-size: 2rem;
-    flex-basis: 33%;
-}
 .navbar__rightside {
     margin-left: auto;
-    font-size: 2rem;
 }
 
 .navbar__search-container {  
-    display: flex;
-    flex-basis: 33%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    flex-basis: 33%; 
 }
 
 .navbar__search-form {
     display: flex;
-    flex-basis: 100%;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -72,12 +71,13 @@ html {
     width: 70%;
     font-size: 1.8rem;
     padding: .3rem  .7rem  .3rem .7rem;
+    transition: all .5s;
     
 }
 
 .navbar__search-text:focus {
-    transition: all .3s;
-    width: 120%;
+    transition: all .5s;
+    width: 100%;
     outline-style: none;
 }
 
@@ -97,6 +97,27 @@ html {
     margin-right: 2.2rem;
 }
 
+.navbar__leftside {
+    flex-basis: 33%; 
+}
+
+.sort__checkbox {
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+.sort__form{
+    padding: 3rem 3rem 3rem 3rem;
+    z-index: 50;
+    display: flex;
+    letter-spacing: .4rem;
+}
+
+.sort__header{
+    margin-right: 5rem;
+    font-size: 1.6rem;
+}
 
 .form-container {
     font-size: 1.6rem;
@@ -128,8 +149,20 @@ html {
 }
 
 .item-button {
+    padding: 2rem 5rem 2rem 5rem;
     text-decoration: none;
-}
+    border: none;
+    background-image: linear-gradient(to right,
+    rgba(51, 204, 51, 0.774),
+    rgba(74, 187, 74, 0.753),
+    rgba(75, 196, 75, 0.726));
+    font-size: 2rem;
+    color: white;
+    border-radius: 1.5rem;
+} 
 
+.item-button:active{
+    transform: scale(1.1);
+}
 
 
