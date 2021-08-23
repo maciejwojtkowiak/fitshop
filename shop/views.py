@@ -7,6 +7,9 @@ from shop.models import Item
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
+from django.http import Http404
+from django.db.models import Avg, Max, Min
+from django.db.models import Q
 
 def home(request):
     items = Item.objects.all()
@@ -68,5 +71,10 @@ def searchView(request):
     return render(request, 'shop/search.html', {'items': items})
 
 def sortView(request):
-    return render(request, 'shop/sort.html')
+    if request.method == "GET":
+        min_price = int(request.GET.get('min-price'))  
+        max_price = int(request.GET.get('max-price')) 
+        items = Item.objects.filter(Q(price__gte=min_price) & Q(price__lte=max_price))
+
+    return render(request, 'shop/sort.html', {'items': items})
 
