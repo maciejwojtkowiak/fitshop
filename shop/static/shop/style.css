@@ -24,13 +24,13 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-.container {
+.container1 {
     margin: 15rem;
     border-top-left-radius: 10%;
     border-top-right-radius: 10%;
 }
 
-.navbar {
+.navbar1 {
     box-shadow: 1px 1px 17px rgba(0, 0, 0, 0.26), 1px 12px 50px rgba(0, 0, 0, 0.178);
     background-image: linear-gradient(to right,
     rgba(47, 194, 47, 0.774),
@@ -93,6 +93,12 @@ body {
     color: white;
 }
 
+.navbar__link:hover{
+    color: white;
+    transform: translateY(-4px);
+    transition: all .2s;
+}
+
 .navbar__register{
     margin-right: 2.2rem;
 }
@@ -101,22 +107,76 @@ body {
     flex-basis: 33%; 
 }
 
-.sort__checkbox {
-    opacity: 1;
-    cursor: pointer;
-}
-
 
 .sort__form{
     padding: 3rem 3rem 3rem 3rem;
     z-index: 50;
     display: flex;
-    letter-spacing: .4rem;
+    align-items: center;
+    justify-content: center;
 }
 
 .sort__header{
     margin-right: 5rem;
     font-size: 1.6rem;
+    letter-spacing: .4rem;
+}
+
+.sort__submit {
+    letter-spacing: .3rem;
+    font-size: 1.6rem;
+    margin-left: auto;
+    border: none;
+    padding: 1.2rem 2.2rem 1.2rem 2.2rem;
+    border: none;
+    background-image: linear-gradient(to right,
+    rgba(51, 204, 51, 0.774),
+    rgba(74, 187, 74, 0.753),
+    rgba(75, 196, 75, 0.726));
+    color: white;
+    border-radius: 1.5rem;
+
+}
+
+.sort__submit:active{
+    transform: translateY(-5px) scale(1.1);
+    transition: all .1s;
+}
+
+.sort__prices{
+    margin-left: 2rem;
+}
+
+.sort__price-input {
+    font-size: 1.6rem;
+    border: none;
+    -webkit-appearance: none; 
+    padding: 1.6rem;
+}
+
+.sort__price-input:focus{
+    outline: none;
+    background: 
+    linear-gradient(rgba(51, 204, 51, 0.774), rgba(74, 187, 74, 0.753)) center bottom 5px /calc(100% - 10px) 2px no-repeat;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+.sort__select, 
+.form-select {
+    font-family: 'Montserrat', sans-serif;
+    width: 20%;
+    height: 20%;
+    padding: .8rem;
+    font-size: 1.6rem;
+    margin-left: 3rem;
 }
 
 .form-container {
@@ -150,7 +210,6 @@ body {
 
 .item-button {
     padding: 2rem 5rem 2rem 5rem;
-    text-decoration: none;
     border: none;
     background-image: linear-gradient(to right,
     rgba(51, 204, 51, 0.774),
