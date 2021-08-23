@@ -131,6 +131,33 @@ body {
     border-radius: 1.5rem;
 
 }
+
+.sort__prices{
+    margin-left: 2rem;
+}
+
+.sort__price-input {
+    font-size: 1.6rem;
+    border: none;
+    -webkit-appearance: none; 
+    padding: 1.6rem;
+}
+
+.sort__price-input:focus{
+    outline: none;
+    background: 
+    linear-gradient(rgba(51, 204, 51, 0.774), rgba(74, 187, 74, 0.753)) center bottom 5px /calc(100% - 10px) 2px no-repeat;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
 .form-container {
     font-size: 1.6rem;
     max-width: 60rem;
