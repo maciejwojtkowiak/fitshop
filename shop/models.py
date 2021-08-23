@@ -12,6 +12,8 @@ class Item(models.Model):
         max_digits=11,
     )
     image = models.ImageField(upload_to='pictures', default='static/images/man.png')
+    description = models.TextField(default="Item")
+    quantity = models.IntegerField(default=1)
 
     def save(self):
         super().save()
