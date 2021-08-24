@@ -3,13 +3,11 @@ from .forms import SignUpForm
 from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from shop.models import Item
+from shop.models import Item, Profile
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
-from django.http import Http404
-from django.db.models import Avg, Max, Min
-from django.db.models import Q
+
 
 def signup(request):
     if request.method == 'POST':
@@ -73,6 +71,10 @@ def sortView(request):
             items = Item.objects.order_by('price')
         if sorting_method == 'v2':
             items = Item.objects.order_by('-price')
-        
     return render(request, 'shop/sort.html', {'items': items})
+
+def profileView(request):
+    profile = Profile()
+    return render(request, 'shop/profile.html', {'profile': profile})
+
 
