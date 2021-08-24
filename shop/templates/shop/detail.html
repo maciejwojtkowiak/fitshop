@@ -1,5 +1,11 @@
 {% extends 'shop/base.html' %}
 
 {% block content %}
-{{items.title}}
+<div class="detail-container">
+    <h1>ELO</h1>
+    {{item.title}}
+    <img src="{{item.image.url}}">
+
+</div>
+
 {% endblock content %}

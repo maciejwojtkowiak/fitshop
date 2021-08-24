@@ -57,7 +57,7 @@ class ShopListView(ListView):
 class ShopDetailView(DetailView):
     model = Item 
     template_name = 'shop/detail.html'
-    context_object_name = 'items'
+    context_object_name = 'item'
 
 def searchView(request):
     if request.method == "GET":
@@ -68,15 +68,11 @@ def searchView(request):
 
 def sortView(request): 
     if request.method == "GET":
-        min_price = request.GET.get('min-price')  
-        max_price = request.GET.get('max-price')
-        if min_price:
-            items = Item.objects.all().filter(price__gte=min_price)
-        elif max_price:
-            items = Item.objects.all().filter(price__lte=max_price)
-        elif min_price and max_price:
-            items = Item.objects.all().filter(Q(price__gte=min_price) & Q(price__lte=max_price))
-
-    args = {'items': items}
-    return render(request, 'shop/sort.html', args )
+        sorting_method = request.GET.get('select')
+        if sorting_method == 'v1':
+            items = Item.objects.order_by('price')
+        if sorting_method == 'v2':
+            items = Item.objects.order_by('-price')
+        
+    return render(request, 'shop/sort.html', {'items': items})
 

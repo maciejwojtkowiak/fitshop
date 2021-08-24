@@ -4,8 +4,8 @@
 <header>
    
 </header>
-<div class="container1">
-    <nav class="navbar1">
+<div class="container_shop">
+    <nav class="navbar_shop">
         <div class='navbar__list'>
             <div class="navbar__leftside">
                     <a class=" navbar__link" href="{% url 'home-page' %}">Home</a>
@@ -28,10 +28,6 @@
     </nav>
     <form class = "sort__form" method="GET" action="{% url 'sort-page' %}">
         <h1 class="sort__header"> SORT ITEMS </h1>
-        <div class="sort__prices">
-            <input class="sort__price-input" type="number" name="min-price" placeholder="minimum price">
-            <input class="sort__price-input" type="number" name="max-price" placeholder="maximum price">
-         </div>
             <select class= "form-select sort__select" name="select">
                 <option disabled selected> Sorting method</option>
                 <option value="v1">Price: low to high</option>
