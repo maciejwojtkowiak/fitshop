@@ -1,5 +1,7 @@
 from django.db import models
+from django.db.models.deletion import CASCADE
 from djmoney.models.fields import MoneyField
+from django.contrib.auth.models import User
 from PIL import Image
 
 
@@ -23,4 +25,11 @@ class Item(models.Model):
             new_img = (280, 280)
             img.thumbnail(new_img)
             img.save(self.image.path)
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=CASCADE)
+    user_image = models.ImageField(upload_to='pictures', default='static/images/man.p')
+
+    def __str__(self):
+        return f"{self.user.username} Profile"
 
