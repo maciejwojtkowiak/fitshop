@@ -85,10 +85,11 @@ body {
     margin-left: -2rem;
 }
 
-
 .navbar__link{
     text-decoration: none;
     color: white;
+    display: inline-block;
+    
 }
 
 .navbar__link:hover{
@@ -97,12 +98,17 @@ body {
     transition: all .2s;
 }
 
+
 .navbar__register{
     margin-right: 2.2rem;
 }
 
 .navbar__leftside {
     flex-basis: 33%; 
+}
+
+.navbar__rightside > a {
+    margin-left: 2rem;
 }
 
 

@@ -28,7 +28,7 @@ class Item(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=CASCADE)
-    user_image = models.ImageField(upload_to='pictures', default='static/images/man.p')
+    user_image = models.ImageField(upload_to='pictures', default='pictures/man.png')
 
     def __str__(self):
         return f"{self.user.username} Profile"

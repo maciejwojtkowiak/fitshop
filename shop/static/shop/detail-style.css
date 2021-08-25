@@ -1,5 +1,46 @@
-.detail-container{
-    margin: 30rem;
-    background-color: aqua;
+.detail{
+    margin: 20rem 40rem 20rem 30rem;
+    box-shadow: 3px 3px 5px 6px #ccc;
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    
 }
 
+.detail__image{
+    border-radius: 2rem;
+    border-style: solid;
+    border-color: rgb(168, 167, 167);
+    box-shadow: 3px 3px 5px 6px #ccc;
+    margin: 6rem;
+    padding: 3rem;
+}
+
+.detail__item-details {
+    font-size: 2rem;
+    margin-top: 6rem;
+}
+
+.detail__item-title {
+    letter-spacing: .7rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 5.5rem;
+
+}
+
+.detail__item-price {
+    font-weight: 500;
+}
+
+.detail__buy-button {
+    padding: 2rem 5rem 2rem 5rem;
+    border: none;
+    background-image: linear-gradient(to right,
+    rgba(51, 204, 51, 0.774),
+    rgba(74, 187, 74, 0.753),
+    rgba(75, 196, 75, 0.726));
+    font-size: 2rem;
+    color: white;
+    border-radius: 1.5rem;
+}
