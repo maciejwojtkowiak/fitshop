@@ -2,12 +2,16 @@ from django.contrib.auth.models import User
 from django.db.models import fields
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .forms import SignUpForm, ProfileUpdateForm, UserUpdateForm
+from .forms import (
+SignUpForm, 
+ProfileUpdateForm, 
+UserUpdateForm, 
+CommentCreationForm)
 from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView, DeleteView
-from shop.models import Item, Profile
+from django.views.generic.edit import DeleteView, UpdateView, CreateView
+from shop.models import Item, Profile, Comment
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
@@ -60,6 +64,10 @@ class ShopDetailView(DetailView):
     model = Item 
     template_name = 'shop/detail.html'
     context_object_name = 'item'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = CommentCreationForm()
+        return context
 
 def searchView(request):
     if request.method == "GET":
@@ -101,6 +109,7 @@ class ProfileDeleteView(DeleteView):
     fields = ['username', 'email']
     def get_success_url(self) -> str:
         return reverse('home-page')
+
 
 
     

@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
-from .views import ShopListView, ShopDetailView,ProfileDeleteView
+from .views import (ShopListView, 
+ShopDetailView,
+ProfileDeleteView,)
 from django.conf.urls.static import static
 from django.conf import settings
 

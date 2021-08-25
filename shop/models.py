@@ -33,3 +33,7 @@ class Profile(models.Model):
     def __str__(self):
         return f"{self.user.username} Profile"
 
+class Comment(models.Model):
+    user = models.OneToOneField(User, on_delete=CASCADE)
+    content = models.TextField()
+
