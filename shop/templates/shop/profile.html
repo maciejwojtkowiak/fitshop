@@ -3,5 +3,6 @@
 <div>
     {{ user.username }}
     <img src="{{ profile.user_image.url }}">
+    <a href="{% url 'delete-page' pk=user.id %}">Delete</a>
 </div>
 {% endblock content %}

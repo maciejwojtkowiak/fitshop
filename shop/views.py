@@ -1,8 +1,12 @@
+from django.contrib.auth.models import User
+from django.db.models import fields
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from .forms import SignUpForm
 from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import UpdateView, DeleteView
 from shop.models import Item, Profile
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
@@ -74,7 +78,15 @@ def sortView(request):
     return render(request, 'shop/sort.html', {'items': items})
 
 def profileView(request):
-    profile = Profile()
+    profile = Profile
     return render(request, 'shop/profile.html', {'profile': profile})
+
+class ProfileDeleteView(DeleteView):
+    model = User
+    template_name = 'shop/delete.html'
+    fields = ['username', 'email']
+    def get_success_url(self) -> str:
+        return reverse('home-page')
+
 
 

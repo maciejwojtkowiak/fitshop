@@ -88,6 +88,7 @@ body {
 .navbar__link{
     text-decoration: none;
     color: white;
+    display: inline-block;
     
 }
 
@@ -96,6 +97,7 @@ body {
     transform: translateY(-4px);
     transition: all .2s;
 }
+
 
 .navbar__register{
     margin-right: 2.2rem;
