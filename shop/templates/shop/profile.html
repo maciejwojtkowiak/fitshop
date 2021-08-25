@@ -4,5 +4,11 @@
     {{ user.username }}
     <img src="{{ profile.user_image.url }}">
     <a href="{% url 'delete-page' pk=user.id %}">Delete</a>
+    <form method="POST"> {% csrf_token %}
+        {{ p_form.as_p}}
+        {{ u_form.username }}
+        {{ u_form.email }}
+        <button type="submit">Update</button>
+    </form>
 </div>
 {% endblock content %}
