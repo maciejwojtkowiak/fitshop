@@ -1,13 +1,14 @@
 {% extends 'shop/base.html' %}
 
 {% block content %}
-<div class="detail">
+<div class="container">
+{% include 'shop/navbar.html' %}
+<div class=" detail-container">
     <img class="detail__image" src="{{item.image.url}}">
     <div class="detail__item-details">
         <div  class="detail__item-title">
             {{ item.title }}
         </div>
-        <div></div>
         <div  class="detail__item-price">
             {{ item.price }}
         </div>
@@ -16,6 +17,7 @@
         </div>
         <button class="detail__buy-button" type="submit">BUY</button>
     </div>
+</div>
 </div>
 <form method="POST">{% csrf_token %}
     {{ form }}

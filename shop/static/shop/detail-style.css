@@ -1,7 +1,5 @@
-.detail{
-    margin: 20rem 40rem 20rem 30rem;
+.detail-container{
     box-shadow: 3px 3px 5px 6px #ccc;
-    padding: 2rem;
     display: flex;
     flex-direction: row;
     

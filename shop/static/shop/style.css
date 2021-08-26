@@ -24,11 +24,11 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-.container_shop {
+.container {
     margin: 15rem;
 }
 
-.navbar_shop {
+.shop-navbar {
     box-shadow: 1px 1px 17px rgba(0, 0, 0, 0.26), 1px 12px 50px rgba(0, 0, 0, 0.178);
     background-image: linear-gradient(to right,
     rgba(47, 194, 47, 0.774),
