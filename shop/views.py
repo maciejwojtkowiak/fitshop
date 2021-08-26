@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db.models import fields
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse
 from .forms import (
 SignUpForm, 
@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
-from shop.models import Item, Profile, Comment
+from shop.models import Item, Profile, Comments
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
@@ -66,8 +66,13 @@ class ShopDetailView(DetailView):
     context_object_name = 'item'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['comments'] = Comments.objects.all()
+        context['profile'] = Profile.objects.all()
         context['form'] = CommentCreationForm()
         return context
+    def post(self, request, pk):
+        return redirect('home-page')
+        
 
 def searchView(request):
     if request.method == "GET":
@@ -86,22 +91,21 @@ def sortView(request):
     return render(request, 'shop/sort.html', {'items': items})
 
 def profileView(request):
-    profile = Profile
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user,)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
-        if u_form.is_valid() and p_form.is_valid:
+        if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
             messages.success(request, 'Your account has been updated!')
+            return redirect('profile-page')
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
-    args = {
-    'profile': profile, 
+    context = {
     'u_form': u_form, 
     'p_form': p_form}
-    return render(request, 'shop/profile.html', args)
+    return render(request, 'shop/profile.html', context)
 
 class ProfileDeleteView(DeleteView):
     model = User

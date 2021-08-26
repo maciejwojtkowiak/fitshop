@@ -17,4 +17,4 @@ urlpatterns = [
     path('sort', views.sortView, name='sort-page'),
     path('profile', views.profileView, name='profile-page'),
     path('delete/<int:pk>/', ProfileDeleteView.as_view(), name ='delete-page'),
-]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]  +  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

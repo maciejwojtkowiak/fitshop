@@ -9,5 +9,5 @@ def profile_creation(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
-def profile_creation(sender, instance, **kwargs):
+def save_profile(sender, instance, **kwargs):
         instance.profile.save()

@@ -30,10 +30,21 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=CASCADE)
     user_image = models.ImageField(upload_to='pictures', default='pictures/man.png')
 
+
+    def save(self):
+        super().save()
+        img = Image.open(self.user_image.path)
+
+        if  img.height > 280 or img.width > 280:
+            img_size = (280, 280)
+            img.thumbnail(img_size)
+            img.save(self.user_image.path)
     def __str__(self):
         return f"{self.user.username} Profile"
 
-class Comment(models.Model):
-    user = models.OneToOneField(User, on_delete=CASCADE)
+
+class Comments(models.Model):
+    item = models.OneToOneField(Item, default='', on_delete=CASCADE)
+    comment_user = models.OneToOneField(User, default ='', on_delete=CASCADE)
     content = models.TextField()
 

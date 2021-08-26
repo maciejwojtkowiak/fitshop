@@ -1,4 +1,4 @@
-from shop.models import Comment, Profile
+from shop.models import Comments, Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
@@ -23,7 +23,7 @@ class ProfileUpdateForm(forms.ModelForm):
 
 class CommentCreationForm(forms.ModelForm):
     class Meta:
-        model = Comment
+        model = Comments
         fields = ['content']
 
 
