@@ -33,3 +33,9 @@ class Profile(models.Model):
     def __str__(self):
         return f"{self.user.username} Profile"
 
+
+class Comment(models.Model):
+    content = models.TextField(default='')
+    item = models.ForeignKey(Item, on_delete=CASCADE)
+    comment_user = models.ForeignKey(User, on_delete=CASCADE)
+

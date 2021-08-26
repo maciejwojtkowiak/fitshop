@@ -17,5 +17,13 @@
         <button class="detail__buy-button" type="submit">BUY</button>
     </div>
 </div>
+<form method="POST">{% csrf_token %}
+    {{ form }}
+    <button type="submit">Create</button>
+</form>
+
+{% for comment in comments %}
+    <div>{{comment.content}}</div>
+{% endfor %}
 
 {% endblock content %}
