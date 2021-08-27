@@ -44,7 +44,7 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=1)
 
 class Order(models.Model):
-    order_user = models.ForeignKey(User, on_delete=CASCADE)
+    order_user = models.OneToOneField(User, on_delete=CASCADE)
     order_items = models.ManyToManyField(OrderItem)
     ordered = models.BooleanField(default=False)
     total = models.DecimalField(default=0.00, decimal_places=2, max_digits=11)

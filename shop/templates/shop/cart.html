@@ -3,6 +3,16 @@
 <div class="container">
     {% include 'shop/navbar.html' %}
     <div>
+        {% for item in order %}
+        <li>User: {{ item.order_user }}<li/>
+        <li>Items: 
+                {% for order_item in item.order_items.all %}
+                    {{ order_item.order_item.title}}
+                {% endfor %}
+        <li/>
+        <li>Is ordered: {{ item.ordered }}<li/>
+        <li>Total: {{ item.total }}<li/>
+    {% endfor %}
     </div>
 
 </div>

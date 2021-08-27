@@ -131,7 +131,10 @@ class ProfileDeleteView(DeleteView):
     def get_success_url(self) -> str:
         return reverse('home-page')
 
-
+def cart(request):
+    order = Order.objects.filter(order_user=request.user)
+    context = {'order': order}
+    return render(request, 'shop/cart.html', context)
 
 
 

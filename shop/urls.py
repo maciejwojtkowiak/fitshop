@@ -15,4 +15,5 @@ urlpatterns = [
     path('sort', views.sortView, name='sort-page'),
     path('profile', views.profileView, name='profile-page'),
     path('delete/<int:pk>/', ProfileDeleteView.as_view(), name ='delete-page'),
+    path('cart', views.cart, name='cart-page')
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
