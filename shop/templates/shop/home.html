@@ -4,8 +4,9 @@
 <header>
    
 </header>
-{% include 'shop/navbar.html' %}
-<div class="container">
+
+<div class="shop-container">
+    {% include 'shop/navbar.html' %}
     <form class = "sort__form" method="GET" action="{% url 'sort-page' %}">
         <h1 class="sort__header"> SORT ITEMS </h1>
             <select class= "form-select sort__select" name="select">
