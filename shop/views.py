@@ -2,17 +2,18 @@ from django.contrib.auth.models import User
 from django.db.models import fields
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from .forms import SignUpForm, ProfileUpdateForm, UserUpdateForm, CommentCreationForm
 from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, DeleteView
-from shop.models import Comment, Item, Profile
+from shop.models import Comment, Item, Order, OrderItem, Profile
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 
 def signup(request):
@@ -70,16 +71,24 @@ class ShopDetailView(DetailView):
         return context
 
     def post(self, request, pk):
-        form = CommentCreationForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.comment_user = request.user
-            comment.item = Item.objects.get(id=pk)
-            comment.save()
-            return HttpResponse('post-created')
-        else:
-            return HttpResponse('post not created')
-            
+        if 'buy' in request.POST:
+            item = get_object_or_404(Item, id=pk)
+            orderItem, created = OrderItem.objects.get_or_create(order_item=item)
+            order, created = Order.objects.get_or_create(order_user=request.user)
+            order.save()
+            order.order_items.add(orderItem)
+            return HttpResponse('Items added to the database')
+        if 'comment' in request.POST:
+            form = CommentCreationForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.comment_user = request.user
+                comment.item = Item.objects.get(id=pk)
+                comment.save()
+                return HttpResponse('post-created')
+            else:
+                return HttpResponse('post not created')
+                
 
 def searchView(request):
     if request.method == "GET":
@@ -121,6 +130,12 @@ class ProfileDeleteView(DeleteView):
     fields = ['username', 'email']
     def get_success_url(self) -> str:
         return reverse('home-page')
+
+def cart(request):
+    order = Order.objects.filter(order_user=request.user)
+    context = {'order': order}
+    return render(request, 'shop/cart.html', context)
+
 
 
     

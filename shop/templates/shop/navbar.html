@@ -1,0 +1,24 @@
+<nav class="shop-navbar">
+    <div class='navbar__list'>
+        <div class="navbar__leftside">
+                <a class=" navbar__link" href="{% url 'home-page' %}">Home</a>
+        </div>
+        <div class = "navbar__search-container">
+            <form action="{% url 'search-page'%}" class="navbar__search-form" method="GET">
+                <input name="search" class="navbar__search-text" type="text" placeholder="Search for an item.">
+            </form>
+        </div>
+        {% if user.is_authenticated  %}
+        <div class="navbar__rightside">
+            <a class= "navbar__link" href="{% url 'profile-page' %}">Profile</a>
+            <a class="navbar__link" href="{% url 'logout-page' %}">Logout</a>
+        </div>
+        {% endif %}
+        {% if not user.is_authenticated  %}
+            <div class="navbar__rightside">
+                <a class="navbar__link navbar__register" href="{% url 'signup-page'%}">Register</a>
+                <a class="navbar__link" href="{% url 'login-page' %}">Login</a>
+            </div>
+        {% endif %}
+    </div>
+</nav>

@@ -1,25 +1,29 @@
 {% extends 'shop/base.html' %}
 
 {% block content %}
-<div class="detail">
+<div class="shop-container">
+{% include 'shop/navbar.html' %}
+<div class=" detail-container">
     <img class="detail__image" src="{{item.image.url}}">
     <div class="detail__item-details">
         <div  class="detail__item-title">
             {{ item.title }}
         </div>
-        <div></div>
         <div  class="detail__item-price">
             {{ item.price }}
         </div>
         <div class="detail__item-description">
             {{ item.description }}
         </div>
-        <button class="detail__buy-button" type="submit">BUY</button>
+        <form method="POST"> {% csrf_token %}
+            <button name="buy" class="detail__buy-button" type="submit">BUY</button>
+        </form>
     </div>
+</div>
 </div>
 <form method="POST">{% csrf_token %}
     {{ form }}
-    <button type="submit">Create</button>
+    <button name="comment" type="submit">Create</button>
 </form>
 
 {% for comment in comments %}
