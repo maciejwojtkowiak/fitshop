@@ -57,6 +57,8 @@ class ShopListView(ListView):
     model = Item
     template_name =  'shop/home.html'
     context_object_name = 'items'
+    def post(self, request, *args, **kwargs):
+        return reverse('detail-page')
 
 
 class ShopDetailView(DetailView):
@@ -106,8 +108,8 @@ def sortView(request):
             items = Item.objects.order_by('-price')
     return render(request, 'shop/sort.html', {'items': items})
 
-def profileView(request):
-    profile = Profile
+def profileView(request, pk):
+    profile = Profile()
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user,)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)

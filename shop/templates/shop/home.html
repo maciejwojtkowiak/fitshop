@@ -22,7 +22,9 @@
                 <a href="{% url 'detail-page' item.id %}" class="item-image"><img src="{{item.image.url}}"></a>
                 <h1 class = "item-title">{{ item.title }}</h1>
                 <p class ="item-price">{{ item.price }}</p>
-                <button class = "item-button">Buy</button>
+                <form action="{% url 'detail-page' item.id %}" method="POST"> {% csrf_token %}
+                    <button name="buy" class="detail__buy-button" type="submit">BUY</button>
+                </form>
             </div>
         {% endfor %}
     </div>
