@@ -5,8 +5,11 @@ from djmoney.models.fields import MoneyField
 from django.contrib.auth.models import User
 from PIL import Image
 
-
-class Item(models.Model):
+class Visits(models.Model):
+    visits = models.IntegerField(default=0)
+    class Meta:
+        abstract = True
+class Item(Visits, models.Model):
     title = models.CharField(max_length=150)
     price = MoneyField(
         decimal_places=2,
@@ -16,6 +19,9 @@ class Item(models.Model):
     )
     image = models.ImageField(upload_to='pictures', default='static/images/man.png')
     description = models.TextField(default="Item")
+    visits = models.IntegerField(default=0)
+    
+   
 
     def save(self):
         super().save()

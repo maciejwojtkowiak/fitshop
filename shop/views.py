@@ -14,6 +14,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from .mixins import VisitCounter
 
 
 def signup(request):
@@ -61,7 +62,7 @@ class ShopListView(ListView):
         return reverse('detail-page')
 
 
-class ShopDetailView(DetailView):
+class ShopDetailView(VisitCounter, DetailView):
     model = Item 
     template_name = 'shop/detail.html'
     context_object_name = 'item'
@@ -90,6 +91,7 @@ class ShopDetailView(DetailView):
                 return HttpResponse('post-created')
             else:
                 return HttpResponse('post not created')
+        
                 
 
 def searchView(request):
