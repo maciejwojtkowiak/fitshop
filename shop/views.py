@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, DeleteView
-from shop.models import Comment, Item, Order, OrderItem, Profile
+from shop.models import Comment, Item, Cart, OrderItem, Profile
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
@@ -77,9 +77,9 @@ class ShopDetailView(VisitCounter, DetailView):
         if 'buy' in request.POST:
             item = get_object_or_404(Item, id=pk)
             orderItem, created = OrderItem.objects.get_or_create(order_item=item)
-            order, created = Order.objects.get_or_create(order_user=request.user)
-            order.save()
-            order.order_items.add(orderItem)
+            cart, created = Cart.objects.get_or_create(order_user=request.user)
+            cart.save()
+            cart.order_items.add(orderItem)
             return HttpResponse('Items added to the database')
         if 'comment' in request.POST:
             form = CommentCreationForm(request.POST)
@@ -136,8 +136,9 @@ class ProfileDeleteView(DeleteView):
         return reverse('home-page')
 
 def cart(request):
-    order = Order.objects.filter(order_user=request.user)
-    context = {'order': order}
+    cart = Cart.objects.filter(order_user=request.user)
+    cart.total = 10.00
+    context = {'cart': cart}
     return render(request, 'shop/cart.html', context)
 
 
