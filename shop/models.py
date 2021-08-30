@@ -4,9 +4,15 @@ from django.db.models.fields import IntegerField
 from djmoney.models.fields import MoneyField
 from django.contrib.auth.models import User
 from PIL import Image
+from decimal import Decimal
+from django.db.models import F, Sum
 
 
-class Item(models.Model):
+class Visits(models.Model):
+    visits = models.IntegerField(default=0)
+    class Meta:
+        abstract = True
+class Item(Visits, models.Model):
     title = models.CharField(max_length=150)
     price = MoneyField(
         decimal_places=2,
@@ -16,6 +22,8 @@ class Item(models.Model):
     )
     image = models.ImageField(upload_to='pictures', default='static/images/man.png')
     description = models.TextField(default="Item")
+    visits = models.IntegerField(default=0)
+   
 
     def save(self):
         super().save()
@@ -43,12 +51,15 @@ class OrderItem(models.Model):
     order_item = models.ForeignKey(Item, on_delete=CASCADE, null=True)
     quantity = models.IntegerField(default=1)
 
-class Order(models.Model):
+class Cart(models.Model):
     order_user = models.OneToOneField(User, on_delete=CASCADE)
     order_items = models.ManyToManyField(OrderItem)
     ordered = models.BooleanField(default=False)
     total = models.DecimalField(default=0.00, decimal_places=2, max_digits=11)
 
+    def total_price(self):
+        item = self.order_items.all()
+        total = item.order_item.price * item.order_item.quantity
+        return total
 
     
-
