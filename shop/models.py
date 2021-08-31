@@ -41,6 +41,17 @@ class Profile(models.Model):
     def __str__(self):
         return f"{self.user.username} Profile"
 
+    def save(self, *args, **kwargs):
+        super().save()
+        img = Image.open(self.user_image.path)
+
+        if img.height > 280 or img.width > 280:
+            new_img = (280, 280)
+            img.thumbnail(new_img)
+            img.save(self.user_image.path)
+
+
+
 
 class Comment(models.Model):
     content = models.TextField(default='')
