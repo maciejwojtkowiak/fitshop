@@ -55,11 +55,12 @@ class Cart(models.Model):
     order_user = models.OneToOneField(User, on_delete=CASCADE)
     order_items = models.ManyToManyField(OrderItem)
     ordered = models.BooleanField(default=False)
-    total = models.DecimalField(default=0.00, decimal_places=2, max_digits=11)
+    total = MoneyField(
+    default=0.00, 
+    decimal_places=2, 
+    max_digits=11, 
+    default_currency='USD')
 
-    def total_price(self):
-        item = self.order_items.all()
-        total = item.order_item.price * item.order_item.quantity
-        return total
+    
 
     
