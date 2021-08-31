@@ -14,8 +14,13 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from .mixins import VisitCounter
+import os 
+import stripe
+from django.http import JsonResponse
 
+stripe.api_key = os.environ.get('stripeAPI')
 
 def signup(request):
     if request.method == 'POST':
@@ -80,6 +85,8 @@ class ShopDetailView(VisitCounter, DetailView):
             cart, created = Cart.objects.get_or_create(order_user=request.user)
             cart.save()
             cart.order_items.add(orderItem)
+            cart.total += item.price * orderItem.quantity
+            cart.save()
             return HttpResponse('Items added to the database')
         if 'comment' in request.POST:
             form = CommentCreationForm(request.POST)
@@ -137,10 +144,40 @@ class ProfileDeleteView(DeleteView):
 
 def cart(request):
     cart = Cart.objects.filter(order_user=request.user)
-    cart.total = 10.00
     context = {'cart': cart}
     return render(request, 'shop/cart.html', context)
 
+
+@csrf_exempt
+def create_checkout_session(request):
+    MY_DOMAIN = 'localhost:8000'
+    try:
+        session = stripe.checkout.Session.create(
+            line_items=[
+                {
+                    'price': 'price_1JUTtYIXuOafNhy8tmWVwgjG',
+                    'quantity': 1,
+                },
+            ],
+            payment_method_types=[
+              'card',
+              'p24',
+            ],
+            mode='payment',
+            success_url= request.build_absolute_uri(reverse('success-page')) + '?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url= request.build_absolute_uri(reverse('cancel-page')),
+        )
+    except Exception as e:
+        return print(e)
+    return redirect(session.url, code=303)
+
+
+def success(request):
+    return render(request, 'shop/success.html')
+
+
+def cancel(request):
+     return render(request, 'shop/cancel.html')
 
 
     
