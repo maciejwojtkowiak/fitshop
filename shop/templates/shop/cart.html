@@ -1,25 +1,29 @@
 {% extends 'shop/base.html' %}
 {% block content %}
-<div class="container">
+<div class="shop-container">
     {% include 'shop/navbar.html' %}
-    <div>
-        {% for item in cart %}
-        <li>User: {{ item.order_user }}<li/>
-        <li>Items: 
-                {% for order_item in item.order_items.all %}
-                    {{ order_item.order_item.title}}
-                {% endfor %}
-        <li/>
-        <li>Is ordered: {{ item.ordered }}<li/>
-        <li>Total: {{ item.total }}<li/>
-    {% endfor %}
+    <div class="cart-container"></div>
+        <div> Your cart </div>
+        <div>
+            {% for item in cart %}
+            <li>User: {{ item.order_user }}<li/>
+            <li>Items: 
+                    {% for order_item in item.order_items.all %}
+                        {{ order_item.order_item.title}}
+                    {% endfor %}
+            <li/>
+            <li>Is ordered: {{ item.ordered }}<li/>
+            <li>Total: {{ item.total }}<li/>
+        {% endfor %}
+        </div>
+        <td class="num">{{ cart.total_price|floatformat:"2" }}</td>
     </div>
-    <td class="num">{{ cart.total_price|floatformat:"2" }}</td>
-</div>
 
-<form action="{% url 'checkout-page' %}" method="GET">
-    <button type="submit">Checkout</button>
-</form>
+    <form action="{% url 'checkout-page' %}" method="GET">
+        <button type="submit">Checkout</button>
+    </form>
+  </div>
+</div>
 
 
 {% endblock content %}
