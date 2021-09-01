@@ -151,6 +151,7 @@ def cart(request):
 @csrf_exempt
 def create_checkout_session(request):
     MY_DOMAIN = 'localhost:8000'
+    cart = Cart.objects.all()
     try:
         session = stripe.checkout.Session.create(
             line_items=[

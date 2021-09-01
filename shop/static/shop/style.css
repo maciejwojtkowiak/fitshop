@@ -228,4 +228,9 @@ input[type=number] {
     transform: scale(1.1);
 }
 
+.item-views{
+    opacity: 0.65;
+    font-weight: 100;
+}
+
 
