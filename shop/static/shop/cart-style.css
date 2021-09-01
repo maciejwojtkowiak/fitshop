@@ -1,0 +1,22 @@
+.cart-container {
+    margin-top: 4rem;
+}
+
+.cart-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-header{
+    color: white;
+    background-image: linear-gradient(to right,
+    rgba(51, 204, 51, 0.774),
+    rgba(74, 187, 74, 0.753),
+    rgba(75, 196, 75, 0.726));
+}
+
+.cart-items{
+    display: flex;
+    flex-direction: column;
+}

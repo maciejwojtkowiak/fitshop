@@ -4,6 +4,7 @@ from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
+from django.views.generic.base import View
 from .forms import SignUpForm, ProfileUpdateForm, UserUpdateForm, CommentCreationForm
 from django.contrib import messages
 from django.views.generic.list import ListView
@@ -151,23 +152,30 @@ def cart(request):
 @csrf_exempt
 def create_checkout_session(request):
     MY_DOMAIN = 'localhost:8000'
-    cart = Cart.objects.all()
+    cart = Cart.objects.get(order_user=request.user)
     try:
         session = stripe.checkout.Session.create(
             line_items=[
                 {
-                    'price': 'price_1JUTtYIXuOafNhy8tmWVwgjG',
-                    'quantity': 1,
+                    'price_data': {
+                        'currency': 'usd',
+                        'unit_amount': cart.total,
+                        'product_data': {
+                            'name': cart.order_items.title
+                        }
+                    },
+                        'quantity': 1,
                 },
             ],
             payment_method_types=[
-              'card',
-              'p24',
+            'card',
+            'p24',
             ],
             mode='payment',
             success_url= request.build_absolute_uri(reverse('success-page')) + '?session_id={CHECKOUT_SESSION_ID}',
             cancel_url= request.build_absolute_uri(reverse('cancel-page')),
         )
+        
     except Exception as e:
         return print(e)
     return redirect(session.url, code=303)
