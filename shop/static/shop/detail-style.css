@@ -19,11 +19,8 @@
     margin-top: 6rem;
 }
 
-.detail__item-title {
-    letter-spacing: .7rem;
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 5.5rem;
+.detail__item-title-container {
+   
 
 }
 
@@ -41,4 +38,48 @@
     font-size: 2rem;
     color: white;
     border-radius: 1.5rem;
+}
+
+.comment-section{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5rem;
+}
+
+.comment-form {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.comment-button {
+    margin: auto;
+    display: block;
+    padding: 1rem 2rem 1rem 2rem;
+    border: none;
+    background-image: linear-gradient(to right,
+    rgba(51, 204, 51, 0.774),
+    rgba(74, 187, 74, 0.753),
+    rgba(75, 196, 75, 0.726));
+    font-size: 2rem;
+    color: white;
+    border-radius: 1.5rem;
+}
+
+.detail__item-title{
+    display: inline-block;
+    letter-spacing: .7rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 5.5rem;
+}
+
+.detail__visits {
+    font-size: 1.1rem;
+    display: inline-block;
+    margin-left: 1.2rem;
+    font-weight: 100;
+    opacity: 0.62;
 }

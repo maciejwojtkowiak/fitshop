@@ -20,6 +20,7 @@ from .mixins import VisitCounter
 import os 
 import stripe
 from django.http import JsonResponse
+import json
 
 stripe.api_key = os.environ.get('stripeAPI')
 
@@ -146,39 +147,40 @@ class ProfileDeleteView(DeleteView):
 def cart(request):
     cart = Cart.objects.filter(order_user=request.user)
     context = {'cart': cart}
+    if request.method == 'POST':
+        reverse('checkout-page')
     return render(request, 'shop/cart.html', context)
 
-
 @csrf_exempt
-def create_checkout_session(request):
-    MY_DOMAIN = 'localhost:8000'
-    cart = Cart.objects.get(order_user=request.user)
-    try:
-        session = stripe.checkout.Session.create(
-            line_items=[
-                {
-                    'price_data': {
-                        'currency': 'usd',
-                        'unit_amount': cart.total,
-                        'product_data': {
-                            'name': cart.order_items.title
-                        }
+def create_checkout_session(request, pk):
+
+    request_data = json.loads(request.body)
+    cart = Cart.objects.filter(order_user = request.user)
+
+    stripe.api_key = os.environ.get('stripeAPI')
+    checkout_session = stripe.checkout.Session.create(
+        # Customer Email is optional,
+        # It is not safe to accept email directly from the client side
+        customer_email = request_data['email'],
+        payment_method_types=['card'],
+        line_items=[
+            {
+                'price_data': {
+                    'currency': 'usd',
+                    'product_data': {
+                    'name': cart.order_items,
                     },
-                        'quantity': 1,
+                    'unit_amount': cart.total,
                 },
-            ],
-            payment_method_types=[
-            'card',
-            'p24',
-            ],
-            mode='payment',
-            success_url= request.build_absolute_uri(reverse('success-page')) + '?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url= request.build_absolute_uri(reverse('cancel-page')),
-        )
-        
-    except Exception as e:
-        return print(e)
-    return redirect(session.url, code=303)
+                'quantity': 1,
+            }
+        ],
+        mode='payment',
+        success_url=request.build_absolute_uri(
+            reverse('success-page')
+        ) + "?session_id={CHECKOUT_SESSION_ID}",
+        cancel_url=request.build_absolute_uri(reverse('cancel-page')),
+    )
 
 
 def success(request):

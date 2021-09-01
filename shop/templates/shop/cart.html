@@ -19,7 +19,7 @@
         {% endfor %}
         <td class="num">{{ cart.total_price|floatformat:"2" }}</td>
     </div>
-    <form action="{% url 'checkout-page' %}" method="GET">
+    <form action="{% url 'checkout-page' 5 %}" method="GET">
         <button type="submit">Checkout</button>
     </form>
 </div>
