@@ -4,6 +4,8 @@ from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
+from django.views.generic.base import View
+from stripe.api_resources import checkout
 from .forms import SignUpForm, ProfileUpdateForm, UserUpdateForm, CommentCreationForm
 from django.contrib import messages
 from django.views.generic.list import ListView
@@ -19,6 +21,7 @@ from .mixins import VisitCounter
 import os 
 import stripe
 from django.http import JsonResponse
+import json
 
 stripe.api_key = os.environ.get('stripeAPI')
 
@@ -145,33 +148,40 @@ class ProfileDeleteView(DeleteView):
 def cart(request):
     cart = Cart.objects.filter(order_user=request.user)
     context = {'cart': cart}
+    if request.method == 'POST':
+        reverse('checkout-page')
     return render(request, 'shop/cart.html', context)
-
 
 @csrf_exempt
 def create_checkout_session(request):
-    MY_DOMAIN = 'localhost:8000'
-    cart = Cart.objects.all()
-    try:
-        session = stripe.checkout.Session.create(
-            line_items=[
-                {
-                    'price': 'price_1JUTtYIXuOafNhy8tmWVwgjG',
-                    'quantity': 1,
-                },
-            ],
-            payment_method_types=[
-              'card',
-              'p24',
-            ],
-            mode='payment',
-            success_url= request.build_absolute_uri(reverse('success-page')) + '?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url= request.build_absolute_uri(reverse('cancel-page')),
-        )
-    except Exception as e:
-        return print(e)
-    return redirect(session.url, code=303)
+    if request.method == "GET":
+        try:
+            item = Item.objects.get(title='Kola')
+            checkout_session = stripe.checkout.Session.create(
+                line_items=[
+                    {
+                        # TODO: replace this with the `price` of the product you want to sell
+                        'price': item.price,
+                        'quantity': 1,
+                    },
+                ],
+                payment_method_types=[
+                'card',
+                'p24',
+                ],
+                mode='payment',
+                success_url=request.build_absolute_uri(reverse('success-page'))+ '?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url= request.build_absolute_uri(reverse('cancel-page')),
+            )
+        except Exception as e:
+            return HttpResponse(e)
+        return redirect(checkout_session.url, {'item': item}, code=303)
+            
 
+
+        
+
+ 
 
 def success(request):
     return render(request, 'shop/success.html')

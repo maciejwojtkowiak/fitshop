@@ -5,12 +5,12 @@
     <div class='user-container'>
         {{ user.username }}
         <img src="{{ user.profile.user_image.url }}">
-        <a href="{% url 'delete-page' pk=user.id %}">Delete</a>
+        <a class="delete-button" href="{% url 'delete-page' pk=user.id %}">Delete</a>
         <form enctype='multipart/form-data' method="POST"> {% csrf_token %}
             {{ p_form.as_p}}
             {{ u_form.username }}
             {{ u_form.email }}
-            <button type="submit">Update</button>
+            <button class="submit-button" type="submit">Update</button>
         </form>
     </div>  
 </div>

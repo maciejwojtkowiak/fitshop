@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
-from django.db.models.fields import IntegerField
+from django.db.models.fields import DecimalField, IntegerField
 from djmoney.models.fields import MoneyField
 from django.contrib.auth.models import User
 from PIL import Image
@@ -14,12 +14,7 @@ class Visits(models.Model):
         abstract = True
 class Item(Visits, models.Model):
     title = models.CharField(max_length=150)
-    price = MoneyField(
-        decimal_places=2,
-        default=0,
-        default_currency='USD',
-        max_digits=11,
-    )
+    price =  models.DecimalField(max_digits=6, decimal_places=2)
     image = models.ImageField(upload_to='pictures', default='static/images/man.png')
     description = models.TextField(default="Item")
     visits = models.IntegerField(default=0)
@@ -66,11 +61,7 @@ class Cart(models.Model):
     order_user = models.OneToOneField(User, on_delete=CASCADE)
     order_items = models.ManyToManyField(OrderItem)
     ordered = models.BooleanField(default=False)
-    total = MoneyField(
-    default=0.00, 
-    decimal_places=2, 
-    max_digits=11, 
-    default_currency='USD')
+    total = models.DecimalField(max_digits=6, decimal_places=2)
 
     
 

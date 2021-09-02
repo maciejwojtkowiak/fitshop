@@ -3,33 +3,39 @@
 {% block content %}
 <div class="shop-container">
 {% include 'shop/navbar.html' %}
-<div class=" detail-container">
-    <img class="detail__image" src="{{item.image.url}}">
-    <div class="detail__item-details">
-        <div  class="detail__item-title">
-            {{ item.title }}
+    <div class=" detail-container">
+        <img class="detail__image" src="{{item.image.url}}">
+        <div class="detail__item-details">
+            <div  class="detail__item-title-container">
+                <h1 class="detail__item-title">{{ item.title }}</h1> <p class="detail__visits">views: {{visits}}</p>
+            </div>
+            <div  class="detail__item-price">
+                {{ item.price }}
+            </div>
+            <div class="detail__item-description">
+                {{ item.description }}
+            </div>
+            <form method="POST"> {% csrf_token %}
+                <button name="buy" class="detail__buy-button" type="submit">BUY</button>
+            </form>
+                
         </div>
-        <div  class="detail__item-price">
-            {{ item.price }}
+    </div>
+
+    <div class='comment-section'>
+        {% for comment in comments %}
+            <div>{{comment.content}}</div>
+            {{user.username}}
+        {% endfor %}
+        <div class ='comment-form'>
+            <form method="POST">{% csrf_token %}
+                {{ form }}
+                <button class="comment-button" name="comment" type="submit">Create</button>
+            </form>
         </div>
-        <div class="detail__item-description">
-            {{ item.description }}
-        </div>
-        <form method="POST"> {% csrf_token %}
-            <button name="buy" class="detail__buy-button" type="submit">BUY</button>
-        </form>
-            <h1>{{visits}}</h1>
+
+       
     </div>
 </div>
-</div>
-<form method="POST">{% csrf_token %}
-    {{ form }}
-    <button name="comment" type="submit">Create</button>
-</form>
-
-{% for comment in comments %}
-    <div>{{comment.content}}</div>
-    {{user.username}}
-{% endfor %}
 
 {% endblock content %}
