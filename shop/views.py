@@ -156,31 +156,28 @@ def cart(request):
 def create_checkout_session(request):
     if request.method == "GET":
         try:
+            cart = Cart.objects.get(order_user=request.user)
             item = Item.objects.get(title='Kola')
             checkout_session = stripe.checkout.Session.create(
-                line_items=[
-                    {
-                        # TODO: replace this with the `price` of the product you want to sell
-                        'price': item.price,
-                        'quantity': 1,
+                payment_method_types=['card', 'p24'], 
+                line_items=[{
+                'price_data': {
+                    'currency': 'eur',
+                    'product_data': {
+                    'name': cart.order_items
                     },
-                ],
-                payment_method_types=[
-                'card',
-                'p24',
-                ],
+                    'unit_amount': cart.total,
+                },
+                'quantity': 1,
+                }],
                 mode='payment',
-                success_url=request.build_absolute_uri(reverse('success-page'))+ '?session_id={CHECKOUT_SESSION_ID}',
-                cancel_url= request.build_absolute_uri(reverse('cancel-page')),
+                success_url = request.build_absolute_uri(reverse('success-page'))+ '?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url = request.build_absolute_uri(reverse('cancel-page')),
             )
         except Exception as e:
             return HttpResponse(e)
         return redirect(checkout_session.url, {'item': item}, code=303)
             
-
-
-        
-
  
 
 def success(request):
