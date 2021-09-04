@@ -6,6 +6,11 @@
         <div class='cart-header-container'> 
             <h1 class='cart-header'>Your cart </h1>
         </div>
+        <div class="cart-table">
+            <div> Quantity </div>
+            <div> Name </div>
+            <div> Price </div>
+        </div>
             {% for item in cart %}
             User: {{ item.order_user }}
            Items: 
@@ -15,12 +20,13 @@
                     {% endfor %}
            
             Is ordered: {{ item.ordered }}
-            Total: {{ item.total }}
+            {{ cart.real_total_with_sign }}
+            
         {% endfor %}
-        <td class="num">{{ cart.total_price|floatformat:"2" }}</td>
+        Cart: {{ cart.real_total_with_sign }}
     </div>
     <form action="{% url 'checkout-page' %}" method="GET"> 
-        <button type="submit">Checkout</button>
+        <button class="checkout-button" type="submit">Checkout</button>
     </form>
 </div>
 

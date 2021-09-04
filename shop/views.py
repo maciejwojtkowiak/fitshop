@@ -84,11 +84,13 @@ class ShopDetailView(VisitCounter, DetailView):
     def post(self, request, pk):
         if 'buy' in request.POST:
             item = get_object_or_404(Item, id=pk)
+            item_quantity = request.POST.get('quantity')
             orderItem, created = OrderItem.objects.get_or_create(order_item=item)
             cart, created = Cart.objects.get_or_create(order_user=request.user)
             cart.save()
+            if Cart.objects.filter(order_items=orderItem).exists():
+                orderItem.quantity += 1
             cart.order_items.add(orderItem)
-            cart.total += item.price * orderItem.quantity
             cart.save()
             return HttpResponse('Items added to the database')
         if 'comment' in request.POST:
@@ -157,14 +159,13 @@ def create_checkout_session(request):
     if request.method == "GET":
         try:
             cart = Cart.objects.get(order_user=request.user)
-            item = Item.objects.get(title='Kola')
             checkout_session = stripe.checkout.Session.create(
                 payment_method_types=['card', 'p24'], 
                 line_items=[{
                 'price_data': {
                     'currency': 'eur',
                     'product_data': {
-                    'name': cart.order_items
+                    'name': "Total:"
                     },
                     'unit_amount': cart.total,
                 },
@@ -176,7 +177,7 @@ def create_checkout_session(request):
             )
         except Exception as e:
             return HttpResponse(e)
-        return redirect(checkout_session.url, {'item': item}, code=303)
+        return redirect(checkout_session.url, code=303)
             
  
 

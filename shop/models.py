@@ -29,6 +29,12 @@ class Item(Visits, models.Model):
             img.thumbnail(new_img)
             img.save(self.image.path)
 
+    def real_price(self):
+        return self.price / 100
+
+    def real_price_with_sign(self):
+        return f"{self.price / 100}€"
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=CASCADE)
     user_image = models.ImageField(upload_to='pictures', default='pictures/man.png')
@@ -61,7 +67,16 @@ class Cart(models.Model):
     order_user = models.OneToOneField(User, on_delete=CASCADE)
     order_items = models.ManyToManyField(OrderItem)
     ordered = models.BooleanField(default=False)
-    total = models.IntegerField(default=1000)
+    total = models.IntegerField(default=0, help_text="100 = 1EUR")
+
+    def real_total(self):
+        return self.total / 100 
+
+    def real_total_with_sign(self):
+        return f"{self.total / 100 }€"
+
+
+    
 
     
 
