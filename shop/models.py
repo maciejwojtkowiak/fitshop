@@ -14,7 +14,7 @@ class Visits(models.Model):
         abstract = True
 class Item(Visits, models.Model):
     title = models.CharField(max_length=150)
-    price =  models.DecimalField(max_digits=6, decimal_places=2)
+    price =  models.IntegerField(default=1000)
     image = models.ImageField(upload_to='pictures', default='static/images/man.png')
     description = models.TextField(default="Item")
     visits = models.IntegerField(default=0)
@@ -61,7 +61,7 @@ class Cart(models.Model):
     order_user = models.OneToOneField(User, on_delete=CASCADE)
     order_items = models.ManyToManyField(OrderItem)
     ordered = models.BooleanField(default=False)
-    total = models.DecimalField(max_digits=6, decimal_places=2)
+    total = models.IntegerField(default=1000)
 
     
 
