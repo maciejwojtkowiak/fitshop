@@ -71,13 +71,12 @@ class Cart(models.Model):
     ordered = models.BooleanField(default=False)
     total = models.IntegerField(default=0, help_text="100 = 1EUR")
     order_items = models.ManyToManyField(Item, related_name='carts', through=OrderItem )
-    desc = models.TextField(default="Nie")
 
     def real_total(self):
         return self.total / 100 
 
-    def real_total_with_sign(self):
-        return f"{self.total / 100 }€"
+    def total_with_sign(self):
+        return f"{self.total}€"
 
 
     

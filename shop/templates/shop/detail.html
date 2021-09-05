@@ -29,7 +29,7 @@
         {% endfor %}
         <div class ='comment-form'>
             <form method="POST">{% csrf_token %}
-                {{ form }}
+                {{ form.content }}
                 <button class="comment-button" name="comment" type="submit">Create</button>
             </form>
         </div>
