@@ -56,18 +56,22 @@ class Profile(models.Model):
 
 class Comment(models.Model):
     content = models.TextField(default='')
-    item = models.ForeignKey(Item, on_delete=CASCADE)
+    comment_item = models.ForeignKey(Item, on_delete=CASCADE)
     comment_user = models.ForeignKey(User, on_delete=CASCADE)
 
 class OrderItem(models.Model):
-    order_item = models.ForeignKey(Item, on_delete=CASCADE, null=True)
+    cart = models.ForeignKey('Cart', on_delete=CASCADE, null=True)
+    item = models.ForeignKey(Item, on_delete=CASCADE, null=True)
     quantity = models.IntegerField(default=1)
+
+
 
 class Cart(models.Model):
     order_user = models.OneToOneField(User, on_delete=CASCADE)
-    order_items = models.ManyToManyField(OrderItem)
     ordered = models.BooleanField(default=False)
     total = models.IntegerField(default=0, help_text="100 = 1EUR")
+    order_items = models.ManyToManyField(Item, related_name='carts', through=OrderItem )
+    desc = models.TextField(default="Nie")
 
     def real_total(self):
         return self.total / 100 
