@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db.models import fields
+from django.db.models.expressions import F
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
@@ -77,22 +78,21 @@ class ShopDetailView(VisitCounter, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['comments'] = Comment.objects.filter(item=self.object)
+        context['comments'] = Comment.objects.filter(comment_item=self.object)
         context['form'] = CommentCreationForm()
         return context
 
     def post(self, request, pk):
         if 'buy' in request.POST:
             item = get_object_or_404(Item, id=pk)
-            item_quantity = request.POST.get('quantity')
-            orderItem, created = OrderItem.objects.get_or_create(order_item=item)
-            cart, created = Cart.objects.get_or_create(order_user=request.user)
+            cart, __ = Cart.objects.get_or_create(order_user=request.user)
+            orderItem, created = OrderItem.objects.get_or_create(item=item, cart=cart)
+            if not created: 
+                orderItem.quantity = F('quantity') + 1
+                orderItem.save(force_update=True, update_fields=['quantity'])
+            cart.order_items.add(orderItem.item)
             cart.save()
-            if Cart.objects.filter(order_items=orderItem).exists():
-                orderItem.quantity += 1
-            cart.order_items.add(orderItem)
-            cart.save()
-            return HttpResponse('Items added to the database')
+            return redirect('cart-page')
         if 'comment' in request.POST:
             form = CommentCreationForm(request.POST)
             if form.is_valid():
@@ -100,9 +100,9 @@ class ShopDetailView(VisitCounter, DetailView):
                 comment.comment_user = request.user
                 comment.item = Item.objects.get(id=pk)
                 comment.save()
-                return HttpResponse('post-created')
+                return redirect('detail-page')
             else:
-                return HttpResponse('post not created')
+                return redirect('detail-page')
         
                 
 
@@ -149,7 +149,8 @@ class ProfileDeleteView(DeleteView):
 
 def cart(request):
     cart = Cart.objects.filter(order_user=request.user)
-    context = {'cart': cart}
+    order_items = OrderItem.objects.filter(cart__in=cart)
+    context = {'cart': cart, 'order_items': order_items}
     if request.method == 'POST':
         reverse('checkout-page')
     return render(request, 'shop/cart.html', context)

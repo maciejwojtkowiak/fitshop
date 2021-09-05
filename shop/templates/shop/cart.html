@@ -11,17 +11,14 @@
             <div> Name </div>
             <div> Price </div>
         </div>
-            {% for item in cart %}
-            User: {{ item.order_user }}
+            {% for i in cart %}
            Items: 
-                    {% for order_item in item.order_items.all %}
-                        {{ order_item.order_item.title}}
-                        {{ order_item.quantity }}
-                    {% endfor %}
-           
-            Is ordered: {{ item.ordered }}
-            {{ cart.real_total_with_sign }}
-            
+                {% for item in i.order_items.all %}
+                    {{ item.title}}
+                {% endfor %}
+                {% for j in order_items %}
+                    {{j.quantity}}
+                {% endfor %}
         {% endfor %}
         Cart: {{ cart.real_total_with_sign }}
     </div>
