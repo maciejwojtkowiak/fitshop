@@ -15,12 +15,14 @@
            Items: 
                 {% for item in i.order_items.all %}
                     {{ item.title}}
-                {% endfor %}
-                {% for j in order_items %}
-                    {{j.quantity}}
+                    {{ item.price }}
                 {% endfor %}
         {% endfor %}
-        Cart: {{ cart.real_total_with_sign }}
+        {% for j in order_items %}
+            {{j.quantity}}
+            {{ j.item.price }}
+        {% endfor %}
+        Cart: {{ cart.total }}
     </div>
     <form action="{% url 'checkout-page' %}" method="GET"> 
         <button class="checkout-button" type="submit">Checkout</button>

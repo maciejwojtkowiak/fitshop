@@ -23,6 +23,7 @@ import os
 import stripe
 from django.http import JsonResponse
 import json
+from django.db.models import Count
 
 stripe.api_key = os.environ.get('stripeAPI')
 
@@ -98,11 +99,11 @@ class ShopDetailView(VisitCounter, DetailView):
             if form.is_valid():
                 comment = form.save(commit=False)
                 comment.comment_user = request.user
-                comment.item = Item.objects.get(id=pk)
+                comment.comment_item = Item.objects.get(id=pk)
                 comment.save()
-                return redirect('detail-page')
+                return HttpResponse('detail-page')
             else:
-                return redirect('detail-page')
+                return HttpResponse('detail-page')
         
                 
 
@@ -149,8 +150,10 @@ class ProfileDeleteView(DeleteView):
 
 def cart(request):
     cart = Cart.objects.filter(order_user=request.user)
-    order_items = OrderItem.objects.filter(cart__in=cart)
-    context = {'cart': cart, 'order_items': order_items}
+    order_items = OrderItem.objects.filter(cart__order_user=request.user)
+    context = {
+        'cart': cart, 
+        'order_items': order_items}
     if request.method == 'POST':
         reverse('checkout-page')
     return render(request, 'shop/cart.html', context)
