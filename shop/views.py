@@ -1,7 +1,5 @@
 from django.contrib.auth.models import User
-from django.db.models import fields
 from django.db.models.expressions import F
-from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
@@ -11,7 +9,7 @@ from .forms import SignUpForm, ProfileUpdateForm, UserUpdateForm, CommentCreatio
 from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView, DeleteView
+from django.views.generic.edit import DeleteView
 from shop.models import Comment, Item, Cart, OrderItem, Profile
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
@@ -21,9 +19,8 @@ from django.views.decorators.csrf import csrf_exempt
 from .mixins import VisitCounter
 import os 
 import stripe
-from django.http import JsonResponse
-import json
-from django.db.models import Count
+from django.db.models import Sum
+
 
 stripe.api_key = os.environ.get('stripeAPI')
 
@@ -149,10 +146,14 @@ class ProfileDeleteView(DeleteView):
         return reverse('home-page')
 
 def cart(request):
-    cart = Cart.objects.filter(order_user=request.user)
-    order_items = OrderItem.objects.filter(cart__order_user=request.user)
+    cart = Cart.objects.annotate(
+        price=Sum(F('orderitem__item__price') * F('orderitem__quantity'))
+    ).get(order_user=request.user)
+    cart.total = cart.price
+    cart.save()
+    order_items = OrderItem.objects.filter(cart=cart)
     context = {
-        'cart': cart, 
+        'cart': cart,
         'order_items': order_items}
     if request.method == 'POST':
         reverse('checkout-page')
