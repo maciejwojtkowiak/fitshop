@@ -3,14 +3,14 @@
 <div class='shop-container'>
     {% include 'shop/navbar.html' %}
     <div class='user-container'>
-        {{ user.username }}
-        <img src="{{ user.profile.user_image.url }}">
-        <a class="delete-button" href="{% url 'delete-page' pk=user.id %}">Delete</a>
+        <div class="username">{{ user.username }}</div>
+        <img class="user-img" src="{{ user.profile.user_image.url }}">
         <form enctype='multipart/form-data' method="POST"> {% csrf_token %}
             {{ p_form.as_p}}
             {{ u_form.username }}
             {{ u_form.email }}
             <button class="submit-button" type="submit">Update</button>
+            <a class="delete-button" href="{% url 'delete-page' pk=user.id %}">Delete</a>
         </form>
     </div>  
 </div>
