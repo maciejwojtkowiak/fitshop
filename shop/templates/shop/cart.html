@@ -3,23 +3,22 @@
 <div class="shop-container">
     {% include 'shop/navbar.html' %}
     <div class="cart-container">
-        <div class='cart-header-container'> 
             <h1 class='cart-header'>Your cart </h1>
-        </div>
-        <div class="cart-table">
-            <div> Quantity </div>
-            <div> Name </div>
-            <div> Price </div>
-        </div>
-        {% for item in order_items %}
-            {{ item.item.title }}
-            {{item.quantity}}
-        {% endfor %}
-        Cart: {{ cart.total }}
-        
-       
+                    <div class="cart-specification-row">
+                        <div>Name</div> 
+                        <div>Quantity</div>  
+                        <div>Price</div>  
+                    </div>
+                    {% for item in order_items %}
+                        <div class="item-row">
+                            <p>{{ item.item.title }}</p>
+                            <p>{{item.quantity}}</p>
+                            <p>{{item.item.price}}</p>
+                        </div>
+                    {% endfor %}
+                    Total: {{ cart.total }}
     </div>
-    <form action="{% url 'checkout-page' %}" method="GET"> 
+    <form class="checkout-form" action="{% url 'checkout-page' %}" method="GET"> 
         <button class="checkout-button" type="submit">Checkout</button>
     </form>
 </div>

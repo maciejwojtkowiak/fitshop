@@ -14,3 +14,4 @@ class VisitCounter(SingleObjectMixin):
         context = super().get_context_data(*args,**kwargs)
         context['visits'] = self.object.visits
         return context
+        
