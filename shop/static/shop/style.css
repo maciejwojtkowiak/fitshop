@@ -195,15 +195,16 @@ input[type=number] {
 
 .shop {
     padding: 3rem;
-    height: 120rem;
+    max-height: 120rem;
     box-shadow: 1px 12px 30px rgba(0, 0, 0, 0.26), 1px 12px 10px rgba(0, 0, 0, 0.178);
     background-color: rgb(255, 255, 255);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
+    grid-gap: 8rem 10rem;
     grid-auto-rows: minmax(100px, auto);
     justify-items: center;
     z-index: 10;
+    overflow: auto;
 }
 
 .item-button {
