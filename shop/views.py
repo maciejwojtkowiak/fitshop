@@ -198,3 +198,8 @@ def cancel(request):
 
 
 
+# order_items = OrderItem.objects.annotate(
+#        sum=Sum(F('item__price') * F('quantity'))
+#    ).get(cart=cart)
+#    order_items.total_price = order_items.sum
+#    order_items.save(force_update=True)

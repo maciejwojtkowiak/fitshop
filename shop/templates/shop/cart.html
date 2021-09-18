@@ -11,12 +11,12 @@
                     </div>
                     {% for item in order_items %}
                         <div class="item-row">
-                            <p>{{ item.item.title }}</p>
-                            <p>{{item.quantity}}</p>
-                            <p>{{item.item.price}}</p>
+                            <p class="cart-item">{{ item.item.title }}</p>
+                            <div class="cart-item item-quantity"><p>{{item.quantity}}</p></div>
+                            <p class="cart-item">{{ item.total }}</p>
                         </div>
                     {% endfor %}
-                    Total: {{ cart.total }}
+                    <div class="total">Total: {{ cart.total_with_sign }}</div>
     </div>
     <form class="checkout-form" action="{% url 'checkout-page' %}" method="GET"> 
         <button class="checkout-button" type="submit">Checkout</button>
