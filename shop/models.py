@@ -51,9 +51,6 @@ class Profile(models.Model):
             img.thumbnail(new_img)
             img.save(self.user_image.path)
 
-
-
-
 class Comment(models.Model):
     content = models.TextField(default='')
     comment_item = models.ForeignKey(Item, on_delete=CASCADE)
@@ -63,8 +60,14 @@ class OrderItem(models.Model):
     cart = models.ForeignKey('Cart', on_delete=CASCADE, null=True)
     item = models.ForeignKey(Item, on_delete=CASCADE, null=True)
     quantity = models.IntegerField(default=1)
+    total_price = models.IntegerField(default=1)
 
-
+    @property
+    def total(self):
+        total = self.item.price * self.quantity
+        total = total / 100
+        total = f"{total}€"
+        return total 
 
 class Cart(models.Model):
     order_user = models.OneToOneField(User, on_delete=CASCADE)
@@ -76,7 +79,7 @@ class Cart(models.Model):
         return self.total / 100 
 
     def total_with_sign(self):
-        return f"{self.total}€"
+        return f"{self.total / 100}€"
 
 
     
