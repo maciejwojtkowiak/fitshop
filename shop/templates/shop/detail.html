@@ -22,20 +22,29 @@
         </div>
     </div>
 
-    <div class='comment-section'>
-        {% for comment in comments %}
-            <div>{{comment.content}}</div>
-            {{user.username}}
-        {% endfor %}
-        <div class ='comment-form'>
-            <form method="POST">{% csrf_token %}
+    <div class="comment-section-grid">
+        <div class="comment-section">
+            {% for comment in comments %}
+                <div class="comment">
+                    <div><img class="comment-user-picture" src="{{user.profile.user_image.url}}"></div>
+                    <p class="comment-user">{{user.username}}</p>
+                    <p class="comment-content">{{comment.content}}</p>
+                </div>
+               
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class ="comment-form">
+        <form method="POST">{% csrf_token %}
                 {{ form.content }}
                 <button class="comment-button" name="comment" type="submit">Create</button>
-            </form>
-        </div>
+            
+        </form>
+    </div>
 
        
-    </div>
+    
 </div>
 
 {% endblock content %}
