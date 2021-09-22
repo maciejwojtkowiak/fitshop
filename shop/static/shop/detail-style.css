@@ -52,25 +52,38 @@
     border-radius: 1.5rem;
 }
 
-.comment-section{
+.comment-section-grid{
     display: grid;
-    margin-top: 5rem;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr ;
+    grid-template-columns: 1fr 1fr;
 }
 
+.comment-section{
+    width: 100%;
+    display: grid;
+    margin-top: 5rem;
+    grid-template-rows: 1fr;
+}
+
+
 .comment {
-    width: 70%;
     margin: 2rem 0rem 2rem 0rem;
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     border: 2px;
     border-radius: 2rem;
     border-style: solid;
     border-color: rgb(168, 167, 167);;
 }
 
+.comment-content{
+    flex-basis: 90%;
+}
+
 .comment-form {
     display: flex;
+    margin-top: 8rem;
     margin-left: auto;
 
 }
