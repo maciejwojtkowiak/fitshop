@@ -124,9 +124,7 @@ body {
     letter-spacing: .3rem;
     font-size: 1.6rem;
     margin-left: auto;
-    border: none;
     padding: 1.2rem 2.2rem 1.2rem 2.2rem;
-    border: none;
     background-image: linear-gradient(to right,
     rgba(51, 204, 51, 0.774),
     rgba(74, 187, 74, 0.753),
@@ -177,21 +175,6 @@ input[type=number] {
     margin-left: 3rem;
 }
 
-.form-container {
-    font-size: 1.6rem;
-    max-width: 60rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-
-.form {
-    max-width: 60rem;
-    display: flex;
-    flex-direction: column;
-}
 
 .shop {
     padding: 3rem;
@@ -223,7 +206,7 @@ input[type=number] {
     transform: scale(1.1);
 }
 
-.item-views{
+.item-visits{
     opacity: 0.65;
     font-weight: 100;
 }

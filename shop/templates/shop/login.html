@@ -4,7 +4,7 @@
 <div class = "form-container"> 
     <form class="form" method="POST">{% csrf_token %}
         <label for="username">Username:</label>
-        {{form.username}}
+        <div class="formy">{{form.username}}</div>
         <label for="password">Passoword:</label>
         {{form.password}}
         <button type="submit">Login</button>
