@@ -1,6 +1,11 @@
 {% extends 'shop/base.html' %}
 
 {% block content %}
+    {% load static %}
+    <div class="logo-container">
+        <h1>FitShop</h1>
+        <img class="shop-logo" src="{% static 'images/weight.png' %}" >
+    </div>
     <div class ="form-container">
         <form class = "form" method="POST">{% csrf_token %}
             <label class="label" for="username"> Your username: </label>

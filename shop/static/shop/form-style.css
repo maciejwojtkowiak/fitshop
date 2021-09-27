@@ -7,6 +7,18 @@
     transform: translate(-50%, -50%);
 }
 
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.shop-logo{
+    height: 20rem;
+    width: 20rem;
+}
+
 
 .form {
     max-width: 60rem;
@@ -37,3 +49,4 @@
     color: white;
     border-radius: 1.5rem;
 }
+
