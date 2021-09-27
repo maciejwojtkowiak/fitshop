@@ -1,17 +1,22 @@
 {% extends 'shop/base.html' %}
 
 {% block content %}
+    {% load static %}
+    <div class="logo-container">
+        <h1>FitShop</h1>
+        <img class="shop-logo" src="{% static 'images/weight.png' %}" >
+    </div>
     <div class ="form-container">
         <form class = "form" method="POST">{% csrf_token %}
             <label class="label" for="username"> Your username: </label>
             {{form.username}}
             <label for="email"> Your email: </label>
             {{form.email}}
-            <label for="password1"> Your Passowrd: </label>
+            <label for="password1"> Your Passoword: </label>
             {{form.password1}}
             <label for="password2"> Re-type password </label>
             {{form.password2}}
-            <button type="submit">Register!</button>
+            <button class="authenticate-submit-button" type="submit">Register!</button>
         </form>
     </div>
 {% endblock content %}
