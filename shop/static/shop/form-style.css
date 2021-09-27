@@ -24,3 +24,16 @@
     border-style: solid;
     border-color: rgb(168, 167, 167);
 }
+
+.authenticate-submit-button {
+    margin-top: 2rem;
+    padding: 2rem 5rem 2rem 5rem;
+    border: none;
+    background-image: linear-gradient(to right,
+    rgba(51, 204, 51, 0.774),
+    rgba(74, 187, 74, 0.753),
+    rgba(75, 196, 75, 0.726));
+    font-size: 2rem;
+    color: white;
+    border-radius: 1.5rem;
+}
