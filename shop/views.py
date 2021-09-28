@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.views.generic.base import View
 from stripe.api_resources import checkout
-from .forms import SignUpForm, ProfileUpdateForm, UserUpdateForm, CommentCreationForm
+from .forms import SignUpForm, ProfileUpdateForm, UserUpdateForm, CommentCreationForm, LoginForm
 from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -39,9 +39,9 @@ def signup(request):
 
 def loginView(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
+        form = LoginForm(request, data=request.POST)
         if form.is_valid():
-            username = request.POST['username']
+            username = request.POST['email']
             password = request.POST['password']
             user = authenticate(request, username=username, password=password)
             if user is not None:
@@ -50,11 +50,11 @@ def loginView(request):
                 messages.success(request, f"You successfully logged in {user}")
                 return redirect('home-page')
             else:
-                form = AuthenticationForm()
+                form = LoginForm()
         else:
-            form = AuthenticationForm()
+            form = LoginForm()
     else:
-        form = AuthenticationForm()
+        form = LoginForm()
     return render(request, 'shop/login.html', {'form': form})
 
 def logoutView(request):
