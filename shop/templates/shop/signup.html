@@ -3,8 +3,7 @@
 {% block content %}
     {% load static %}
     <div class="logo-container">
-        <h1>FitShop</h1>
-        <img class="shop-logo" src="{% static 'images/weight.png' %}" >
+        <h1 class="form-shop-header">FitShop</h1>
     </div>
     <div class ="form-container">
         <form class = "form" method="POST">{% csrf_token %}
