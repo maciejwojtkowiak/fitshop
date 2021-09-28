@@ -3,6 +3,7 @@ from shop.models import Comment, Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 
 
 
@@ -23,6 +24,19 @@ class SignUpForm(UserCreationForm):
             'email': forms.TextInput(attrs={'class': 'formy'}),
             
         }
+
+class LoginForm(AuthenticationForm):
+    password = forms.CharField(
+        label="password",
+        widget=forms.PasswordInput(attrs={'class': 'formy'})
+        )
+    username = forms.CharField(
+        label="username",
+        widget=forms.PasswordInput(attrs={'class': 'formy'}),
+    )
+    class Meta:
+        model = User
+        
 
 class UserUpdateForm(forms.ModelForm):
     class Meta:

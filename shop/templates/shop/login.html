@@ -1,13 +1,16 @@
 {% extends 'shop/base.html' %}
 
 {% block content %}
+<div class="logo-container">
+    <h1 class="form-shop-header">FitShop</h1>
+</div>
 <div class = "form-container"> 
     <form class="form" method="POST">{% csrf_token %}
         <label for="username">Username:</label>
-        <div class="formy">{{form.username}}</div>
+        <div>{{form.username}}</div>
         <label for="password">Passoword:</label>
         {{form.password}}
-        <button type="submit">Login</button>
+        <button class="authenticate-submit-button" type="submit">Login</button>
     </form>
 </div>
 {% endblock content %}
