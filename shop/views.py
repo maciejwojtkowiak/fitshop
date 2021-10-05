@@ -17,6 +17,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from .mixins import VisitCounter
+from django.views.generic import TemplateView
 import os 
 import stripe
 from django.db.models import Sum
@@ -41,7 +42,7 @@ def loginView(request):
     if request.method == 'POST':
         form = LoginForm(request, data=request.POST)
         if form.is_valid():
-            username = request.POST['email']
+            username = request.POST['username']
             password = request.POST['password']
             user = authenticate(request, username=username, password=password)
             if user is not None:
@@ -144,20 +145,28 @@ class ProfileDeleteView(DeleteView):
     fields = ['username', 'email']
     def get_success_url(self) -> str:
         return reverse('home-page')
-
-def cart(request):
-    cart = Cart.objects.annotate(
+class CartView(TemplateView):
+    template_name = "shop/cart.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['cart'] =  cart = Cart.objects.annotate(
         price=Sum(F('orderitem__item__price') * F('orderitem__quantity'))
-    ).get(order_user=request.user)
-    cart.total = cart.price
-    cart.save()
-    order_items = OrderItem.objects.filter(cart=cart)
-    context = {
-        'cart': cart,
-        'order_items': order_items}
-    if request.method == 'POST':
+        ).get(order_user= self.request.user)
+        cart.total = cart.price
+        cart.save()
+        context['order_items'] = OrderItem.objects.filter(cart=cart)
+        return context
+    def post(self, request, pk):
         reverse('checkout-page')
-    return render(request, 'shop/cart.html', context)
+
+def cart(request, pk):
+   
+        
+    if 'minus' in request.POST:
+        item = OrderItem.objects.filter(cart=cart)
+        item.quantity = F('quantity') - 1
+        item.quantity.save()
+    return render(request, 'shop/cart.html')
 
 @csrf_exempt
 def create_checkout_session(request):

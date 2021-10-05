@@ -32,10 +32,11 @@ class LoginForm(AuthenticationForm):
         )
     username = forms.CharField(
         label="username",
-        widget=forms.PasswordInput(attrs={'class': 'formy'}),
+        widget=forms.TextInput(attrs={'class': 'formy'}),
     )
     class Meta:
         model = User
+        fields = ['username', 'password']
         
 
 class UserUpdateForm(forms.ModelForm):

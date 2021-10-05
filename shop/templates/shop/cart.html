@@ -14,12 +14,16 @@
                             <p class="cart-item">{{ item.item.title }}</p>
                             <div class="cart-item item-quantity"><p>{{item.quantity}}</p></div>
                             <p class="cart-item">{{ item.total }}</p>
+                            <form method="POST"> {% csrf_token %}
+                                <button name="minus">-</button>
+                                <button name="minus">X</button>
+                            </form>
                         </div>
                     {% endfor %}
                     <div class="total">Total: {{ cart.total_with_sign }}</div>
     </div>
     <form class="checkout-form" action="{% url 'checkout-page' %}" method="GET"> 
-        <button class="checkout-button" type="submit">Checkout</button>
+        <button class="checkout-button" name="checkout" type="submit">Checkout</button>
     </form>
 </div>
 
