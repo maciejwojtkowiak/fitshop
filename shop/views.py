@@ -161,9 +161,11 @@ class CartView(TemplateView):
     def post(self, request, pk):
         if 'minus' in request.POST:
             cart = Cart.objects.get(order_user=self.request.user)
-            OrderItem.objects.filter(id=pk, cart=cart).update(
-            quantity=F('quantity')-1)
-            return HttpResponse("cart uptaded")
+            item = OrderItem.objects.filter(id=pk, cart=cart, quantity__lte=1)
+            if not item.delete()[0]:
+                OrderItem.objects.filter(
+                id=pk, cart=cart).update(quantity=F('quantity')-1)
+            return redirect('cart-page', pk=self.request.user)
         if 'plus' in request.POST:
             cart = Cart.objects.get(order_user=self.request.user)
             OrderItem.objects.filter(id=pk, cart=cart).update(
@@ -206,11 +208,3 @@ def cancel(request):
 
 
     
-
-
-
-# order_items = OrderItem.objects.annotate(
-#        sum=Sum(F('item__price') * F('quantity'))
-#    ).get(cart=cart)
-#    order_items.total_price = order_items.sum
-#    order_items.save(force_update=True)
