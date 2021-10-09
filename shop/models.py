@@ -62,6 +62,7 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=1)
     total_price = models.IntegerField(default=1)
 
+
     @property
     def total(self):
         total = self.item.price * self.quantity
