@@ -1,3 +1,4 @@
+from re import template
 from django.contrib.auth.models import User
 from django.db.models.expressions import F
 from django.http.response import HttpResponse
@@ -9,7 +10,7 @@ from .forms import SignUpForm, ProfileUpdateForm, UserUpdateForm, CommentCreatio
 from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import DeleteView, UpdateView
 from shop.models import Comment, Item, Cart, OrderItem, Profile
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
@@ -149,24 +150,28 @@ class CartView(TemplateView):
     template_name = "shop/cart.html"
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['cart'] =  cart = Cart.objects.annotate(
+        context['cart'] = Cart.objects.annotate(
         price=Sum(F('orderitem__item__price') * F('orderitem__quantity'))
         ).get(order_user= self.request.user)
+        cart = context['cart']
         cart.total = cart.price
         cart.save()
         context['order_items'] = OrderItem.objects.filter(cart=cart)
         return context
     def post(self, request, pk):
-        reverse('checkout-page')
+        if 'minus' in request.POST:
+            cart = Cart.objects.get(order_user=self.request.user)
+            OrderItem.objects.filter(id=pk, cart=cart).update(
+            quantity=F('quantity')-1)
+            return HttpResponse("cart uptaded")
 
-def cart(request, pk):
+class CartUpdateView(UpdateView):
+    model = OrderItem
+    fields = ['quantity']
+    template_name = 'shop/cart-update.html'
+    def get_success_url(self) -> str:
+        return reverse('cart-page')
    
-        
-    if 'minus' in request.POST:
-        item = OrderItem.objects.filter(cart=cart)
-        item.quantity = F('quantity') - 1
-        item.quantity.save()
-    return render(request, 'shop/cart.html')
 
 @csrf_exempt
 def create_checkout_session(request):

@@ -10,13 +10,13 @@
                         <div>Price</div>  
                     </div>
                     {% for item in order_items %}
-                        <div class="item-row">
+                        <div action class="item-row">
                             <p class="cart-item">{{ item.item.title }}</p>
                             <div class="cart-item item-quantity"><p>{{item.quantity}}</p></div>
                             <p class="cart-item">{{ item.total }}</p>
-                            <form method="POST"> {% csrf_token %}
+                            <a href="{% url 'cart-update' item.id %}">Update</a>
+                            <form action="{% url 'cart-page' pk=item.id %}" method="POST"> {% csrf_token %}
                                 <button name="minus">-</button>
-                                <button name="minus">X</button>
                             </form>
                         </div>
                     {% endfor %}

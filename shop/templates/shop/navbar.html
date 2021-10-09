@@ -10,7 +10,7 @@
         </div>
         {% if user.is_authenticated  %}
         <div class="navbar__rightside">
-            <a class="navbar__link" href="{% url 'cart-page' %}">Cart</a>
+            <a class="navbar__link" href="{% url 'cart-page' user.username %}">Cart</a>
             <a class= "navbar__link" href="{% url 'profile-page' user.username %}">Profile</a>
             <a class="navbar__link" href="{% url 'logout-page' %}">Logout</a>
         </div>
