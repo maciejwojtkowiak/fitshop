@@ -14,9 +14,9 @@
                             <p class="cart-item">{{ item.item.title }}</p>
                             <div class="cart-item item-quantity"><p>{{item.quantity}}</p></div>
                             <p class="cart-item">{{ item.total }}</p>
-                            <a href="{% url 'cart-update' item.id %}">Update</a>
                             <form action="{% url 'cart-page' pk=item.id %}" method="POST"> {% csrf_token %}
                                 <button name="minus">-</button>
+                                <button name="plus">+</button>
                             </form>
                         </div>
                     {% endfor %}

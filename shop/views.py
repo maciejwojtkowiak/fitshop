@@ -164,15 +164,12 @@ class CartView(TemplateView):
             OrderItem.objects.filter(id=pk, cart=cart).update(
             quantity=F('quantity')-1)
             return HttpResponse("cart uptaded")
-
-class CartUpdateView(UpdateView):
-    model = OrderItem
-    fields = ['quantity']
-    template_name = 'shop/cart-update.html'
-    def get_success_url(self) -> str:
-        return reverse('cart-page')
+        if 'plus' in request.POST:
+            cart = Cart.objects.get(order_user=self.request.user)
+            OrderItem.objects.filter(id=pk, cart=cart).update(
+            quantity=F('quantity')+1)
+            return redirect('cart-page', pk=self.request.user)
    
-
 @csrf_exempt
 def create_checkout_session(request):
     if request.method == "GET":
