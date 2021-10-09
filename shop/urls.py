@@ -5,7 +5,7 @@ ShopListView,
 ShopDetailView,
 ProfileDeleteView,
 CartView,
-CartUpdateView)
+)
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -21,7 +21,6 @@ urlpatterns = [
     path('profile/<str:pk>/', views.profileView, name='profile-page'),
     path('delete/<int:pk>/.', ProfileDeleteView.as_view(), name ='delete-page'),
     path('cart/<str:pk>/', CartView.as_view(), name='cart-page'),
-    path('cart-update/<int:pk>', CartUpdateView.as_view(), name='cart-update'),
     path('create_checkout_session', views.create_checkout_session, name='checkout-page'), 
     path('success', views.success, name='success-page'),
     path('cancel', views.cancel, name='cancel-page')
