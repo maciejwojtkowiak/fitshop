@@ -104,8 +104,6 @@ class ShopDetailView(VisitCounter, DetailView):
             else:
                 return HttpResponse('detail-page')
         
-                
-
 def searchView(request):
     if request.method == "GET":
         context = request.GET.get('search')
