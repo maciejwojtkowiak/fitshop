@@ -65,7 +65,7 @@ class OrderItem(models.Model):
 
     @property
     def total(self):
-        total = self.item.price * self.quantity
+        total = self.item.price * float(self.quantity)
         total = total / 100
         total = f"{total}€"
         return total 
@@ -73,8 +73,8 @@ class OrderItem(models.Model):
 class Cart(models.Model):
     order_user = models.OneToOneField(User, on_delete=CASCADE)
     ordered = models.BooleanField(default=False)
-    total = models.IntegerField(default=0, help_text="100 = 1EUR")
-    order_items = models.ManyToManyField(Item, related_name='carts', through=OrderItem )
+    total = models.IntegerField(default=0, help_text="100 = 1EUR", null=True)
+    order_items = models.ManyToManyField(Item, related_name='carts', through=OrderItem)
 
     def real_total(self):
         return self.total / 100 

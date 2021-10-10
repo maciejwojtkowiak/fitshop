@@ -24,7 +24,7 @@
                 <h1 class = "item-title">{{ item.title }}</h1>
                 <p class ="item-price">{{  item.real_price_with_sign }}</p>
                 <form action="{% url 'detail-page' item.id %}" method="POST"> {% csrf_token %}
-                    <button name="buy" class="detail__buy-button" type="submit">BUY</button>
+                    <button name="buy" class="buy-button button"  type="submit">BUY</button>
                 </form>
             </div>
         {% endfor %}

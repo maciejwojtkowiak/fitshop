@@ -1,0 +1,26 @@
+.button{
+    border: none;
+    background-image: linear-gradient(to right,
+    rgba(51, 204, 51, 0.774),
+    rgba(74, 187, 74, 0.753),
+    rgba(75, 196, 75, 0.726));
+    color: white;
+    border-radius: 1.5rem;
+}
+
+.button:hover{
+    transform: scale(1.08);
+    transition: all .1s;
+}
+
+.button:active{
+    transform: translateY(-2px);
+    transition: all .1s;
+}
+
+.buy-button {
+    padding: 2rem 5rem 2rem 5rem;
+    font-size: 2rem;
+    color: white;
+}
+
