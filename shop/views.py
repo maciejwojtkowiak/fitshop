@@ -115,12 +115,15 @@ def searchView(request):
 
 def sortView(request): 
     if request.method == "GET":
-        sorting_method = request.GET.get('select')
-        if sorting_method == 'v1':
-            items = Item.objects.order_by('price')
-        if sorting_method == 'v2':
-            items = Item.objects.order_by('-price')
-    return render(request, 'shop/sort.html', {'items': items})
+        try:
+            sorting_method = request.GET.get('select')
+            if sorting_method == 'v1':
+                items = Item.objects.order_by('price')
+            if sorting_method == 'v2':
+                items = Item.objects.order_by('-price')
+            return render(request, 'shop/sort.html', {'items': items})
+        except UnboundLocalError:
+            return redirect('home-page')
 
 def profileView(request, pk):
     profile = Profile()
