@@ -31,7 +31,11 @@
                    
     </div>
     <form class="checkout-form" action="{% url 'checkout-page' %}" method="GET"> 
+        {% if cart.total != none %}
         <button class="checkout-button button" name="checkout" type="submit">Checkout</button>
+        {% else %}
+        <button class="disabled-checkout-button" disabled name="checkout" type="submit">Checkout<span class="disabled-checkout-button-info">(your cart is empty)</span></button>
+        {% endif %}
     </form>
 </div>
 

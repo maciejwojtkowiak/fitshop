@@ -96,6 +96,23 @@
     border-radius: 1.5rem;
 }
 
+.disabled-checkout-button {
+    border: none;
+    padding: 2rem 5rem 2rem 5rem;
+    background-image: linear-gradient(to right,
+    rgba(35, 36, 35, 0.774),
+    rgba(67, 70, 67, 0.753),
+    rgba(107, 109, 107, 0.726));
+    font-size: 2rem;
+    border-radius: 1.5rem;
+    color: white;
+}
+
+.disabled-checkout-button-info{
+    font-size: 1.2rem;
+    display: block;
+}
+
 .cart-item{
     font-size: 1.3rem;
 }
