@@ -40,18 +40,6 @@
     font-weight: 500;
 }
 
-.detail__buy-button {
-    padding: 2rem 5rem 2rem 5rem;
-    border: none;
-    background-image: linear-gradient(to right,
-    rgba(51, 204, 51, 0.774),
-    rgba(74, 187, 74, 0.753),
-    rgba(75, 196, 75, 0.726));
-    font-size: 2rem;
-    color: white;
-    border-radius: 1.5rem;
-}
-
 .comment-section-grid{
     display: grid;
     grid-template-rows: 1fr 1fr ;

@@ -92,7 +92,7 @@ class ShopDetailView(VisitCounter, DetailView):
                 orderItem.save(force_update=True, update_fields=['quantity'])
             cart.order_items.add(orderItem.item)
             cart.save()
-            return redirect('cart-page')
+            return redirect('cart-page', pk=self.request.user)
         if 'comment' in request.POST:
             form = CommentCreationForm(request.POST)
             if form.is_valid():
@@ -125,7 +125,7 @@ def sortView(request):
 def profileView(request, pk):
     profile = Profile()
     if request.method == 'POST':
-        u_form = UserUpdateForm(request.POST, instance=request.user,)
+        u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
@@ -171,6 +171,11 @@ class CartView(TemplateView):
             OrderItem.objects.filter(id=pk, cart=cart).update(
             quantity=F('quantity')+1)
             return redirect('cart-page', pk=self.request.user)
+        if 'delete' in request.POST:
+            cart = Cart.objects.get(order_user=self.request.user)
+            item = OrderItem.objects.filter(id=pk, cart=cart).delete()
+            return redirect('cart-page', pk=self.request.user)
+
    
 @csrf_exempt
 def create_checkout_session(request):
