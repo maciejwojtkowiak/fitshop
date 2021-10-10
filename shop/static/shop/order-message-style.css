@@ -1,0 +1,16 @@
+.order-info {
+    margin-top: 10rem;
+    display: grid;
+    grid-template-columns: 1fr ;
+    grid-template-rows: 1fr;
+    place-items: center;
+    grid-gap: 2rem;
+    font-weight: 900;
+}
+
+.order-info__button {
+    display: block;
+    padding: 2rem 5rem 2rem 5rem;
+    font-size: 2rem;
+    font-weight: 500;
+}

@@ -11,7 +11,7 @@
             <label>username:</label> {{ u_form.username }}
             <label>email:</label>{{ u_form.email }}
             <button class="submit-button button" type="submit">Update</button>
-            <a class="delete-button button" href="{% url 'delete-page' pk=user.id %}">Delete</a>
+            <a class="delete-button button" href="{% url 'delete-page' %}">Delete</a>
         </form>
     </div>  
 </div>
