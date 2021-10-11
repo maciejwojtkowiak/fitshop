@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-a9pj*$q(momhf##2q=r==u0h1sjl85s4jm0ek=@3gy8dmae@-7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djmoney',
     'stripe'
 ]
 
@@ -81,10 +80,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'fitshop',
-        'USER': 'fitshopuser',
+        'USER': 'fituser',
         'PASSWORD': 'fitpass',
-        'HOST': 'localhost',
-        'PORT': '',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 
