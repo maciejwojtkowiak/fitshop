@@ -1,7 +1,6 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
 from django.db.models.fields import DecimalField, IntegerField
-from djmoney.models.fields import MoneyField
 from django.contrib.auth.models import User
 from PIL import Image
 from decimal import Decimal
