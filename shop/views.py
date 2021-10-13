@@ -156,7 +156,7 @@ class CartView(TemplateView):
         ).get(order_user= self.request.user)
         cart = context['cart']
         cart.total = cart.price
-        cart.save()
+        cart.save()  
         context['order_items'] = OrderItem.objects.filter(cart=cart)
         return context
     def post(self, request, pk):

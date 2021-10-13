@@ -9,7 +9,7 @@
                         <div>Quantity</div>  
                         <div>Price</div>  
                     </div>
-                    {% if cart.total != none %}
+                    {% if cart and cart.total %}
                     {% for item in order_items %}
                         <div action class="item-row">
                             <p class="cart-item">{{ item.item.title }}</p>
