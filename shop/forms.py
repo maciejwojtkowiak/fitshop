@@ -54,6 +54,10 @@ class CommentCreationForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content']
+        widgets = {
+            'content': forms.TextInput(attrs={'placeholder': 'post a comment', 'class':'comment-field'}),
+            
+        }
 
 
 

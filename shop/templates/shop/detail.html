@@ -28,7 +28,7 @@
                 <div class="comment">
                     <div><img class="comment-user-picture" src="{{user.profile.user_image.url}}"></div>
                     <p class="comment-user">{{user.username}}</p>
-                    <p class="comment-content">{{comment.content}}</p>
+                    <p class="user-comment-content">{{comment.content}}</p>
                 </div>
                
             {% endfor %}
@@ -37,8 +37,8 @@
 
         <div class ="comment-form">
             <form method="POST">{% csrf_token %}
-                    {{ form.content }}
-                    <button class="comment-button" name="comment" type="submit">Create</button>
+                    <textarea name="content" placeholder="Post a comment." rows="8" cols="35" class="comment-field"></textarea>
+                    <button class="comment-button button" name="comment" type="submit">Post</button>
             </form>
         </div>
     </div>
