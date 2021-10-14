@@ -10,8 +10,10 @@
             {{ p_form.as_p}}
             <label>username:</label> {{ u_form.username }}
             <label>email:</label>{{ u_form.email }}
+            <form method="POST"> {% csrf_token %}
             <button class="submit-button button" type="submit">Update</button>
-            <button class="delete-button button" href="{% url 'delete-page' user.username %}">Delete</button>
+            </form>
+            <a class="delete-button button" href="{% url 'delete-page' user.id %}">Delete</a>
         </form>
     </div>  
 </div>

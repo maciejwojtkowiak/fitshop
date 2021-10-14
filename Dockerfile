@@ -1,6 +1,5 @@
 FROM python:3
 
-RUN adduser --system --no-create-home django
 
 ENV PYTHONUNBUFFERED=1
 WORKDIR /code
@@ -12,6 +11,5 @@ ENV PYTHONPATH /code
 
 
 EXPOSE 8000
-USER django
 
 CMD ["./main.py"]
