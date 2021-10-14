@@ -1,21 +1,16 @@
-from re import template
 from django.contrib.auth.models import User
 from django.db.models.expressions import F
 from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
-from django.views.generic.base import View
-from stripe.api_resources import checkout
 from .forms import SignUpForm, ProfileUpdateForm, UserUpdateForm, CommentCreationForm, LoginForm
 from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import DeleteView, UpdateView
+from django.views.generic.edit import DeleteView
 from shop.models import Comment, Item, Cart, OrderItem, Profile
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from .mixins import VisitCounter
 from django.views.generic import TemplateView
