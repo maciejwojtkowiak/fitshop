@@ -1,7 +1,9 @@
 {% extends 'shop/base.html' %}
 {% block content %}
+<div class="deletion-container">
+    <h1>Are you sure you would like to delete your account?</h1>
     <form method="POST"> {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">delete-account</button>
+        <button class ="delete-acception-button " type="submit">delete-account</button>
     </form>
+</div>
 {% endblock content %}

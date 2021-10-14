@@ -1,0 +1,28 @@
+.deletion-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.delete-acception-button{
+    background-color: red;
+    color: white;
+    padding: 2rem 5rem 2rem 5rem;
+    border: none;
+    font-size: 2rem;
+    font-weight: 700;
+    border-radius: 1.5rem;
+    margin-top: 2rem;
+}
+
+.delete-acception-button:hover{
+    transform: scale(1.08);
+    transition: all .1s;
+}
+
+.delete-acception-button:active{
+    transform: translateY(-2px);
+    transition: all .1s;
+}

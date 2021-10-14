@@ -21,6 +21,12 @@
     border-radius: 1.5rem;
     padding: 1.2rem;
     margin-left: 2rem;
+    color: white;
+}
+
+.delete-button:link,
+.delete-button:visited {
+    color: white;
 }
 
 
