@@ -40,6 +40,10 @@
     font-weight: 500;
 }
 
+.detail__buy_button {
+    margin-top: 1.5rem;
+}
+
 .comment-section-grid{
     display: grid;
     grid-template-rows: 1fr 1fr ;
