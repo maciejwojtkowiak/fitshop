@@ -1,6 +1,7 @@
 html {
     font-size: 62.5%;
     box-sizing: border-box;
+    height:100%;
 }
 
 * { 
@@ -16,6 +17,7 @@ html {
 
 body {
     font-family: 'Montserrat', sans-serif;
+    height:100%;
 }
 
 .shop-container {
