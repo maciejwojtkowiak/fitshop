@@ -54,7 +54,7 @@
     width: 100%;
     display: grid;
     margin-top: 5rem;
-    grid-template-rows: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 
 
@@ -69,7 +69,7 @@
     border-color: rgb(168, 167, 167);;
 }
 
-.comment-content{
+.user-comment-content{
     flex-basis: 90%;
 }
 
@@ -77,21 +77,25 @@
     display: flex;
     margin-top: 8rem;
     margin-left: auto;
-
 }
+
+.comment-field{
+    padding: 1.2rem;
+    resize: none;
+    font-size: 1.5rem;
+    border-radius: 2rem;
+    border-style: solid;
+    border-color: rgb(168, 167, 167);
+}
+
+
 
 .comment-button {
     margin: auto;
+    margin-top: 2rem;
     display: block;
-    padding: 1rem 2rem 1rem 2rem;
-    border: none;
-    background-image: linear-gradient(to right,
-    rgba(51, 204, 51, 0.774),
-    rgba(74, 187, 74, 0.753),
-    rgba(75, 196, 75, 0.726));
+    padding: 1rem 1.5rem 1rem 1.5rem;
     font-size: 2rem;
-    color: white;
-    border-radius: 1.5rem;
 }
 
 
