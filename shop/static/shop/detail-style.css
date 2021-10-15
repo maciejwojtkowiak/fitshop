@@ -60,17 +60,28 @@
 
 .comment {
     margin: 2rem 0rem 2rem 0rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 6rem 5rem;
+    grid-template-rows: 3rem 3rem;
     border: 2px;
     border-radius: 2rem;
     border-style: solid;
     border-color: rgb(168, 167, 167);;
 }
 
+.comment-user-picture {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    margin: 0.5rem;
+}
+
+.comment-user {
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
 .user-comment-content{
-    flex-basis: 90%;
 }
 
 .comment-form {
@@ -100,8 +111,3 @@
 
 
 
-.comment-user-picture {
-    width: 5rem;
-    height: 5rem;
-    border-radius: 50%;
-}
