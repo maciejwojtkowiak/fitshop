@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core import paginator
 from django.db.models.expressions import F
 from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
@@ -17,6 +18,7 @@ from django.views.generic import TemplateView
 import os 
 import stripe
 from django.db.models import Sum
+from django.core.paginator import Paginator
 
 
 stripe.api_key = os.environ.get('stripeAPI')
