@@ -7,6 +7,6 @@ script:
   - docker-compose run web python manage.py test
 
 after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$password" | docker login -u "$username" --password-stdin
   - docker build -t maciejwojtkowiak/todo . 
   - docker push maciejwojtkowiak/todo . 
