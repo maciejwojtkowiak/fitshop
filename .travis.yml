@@ -6,8 +6,6 @@ services:
 script:
   - docker-compose run web python manage.py test
 
-deploy:
-  provider: script
-  script: docker_push.sh
-  on:
-    branch: master
+after_success:
+  - docker build -t maciejwojtkowiak/todo . 
+  - docker push -t maciejwojtkowiak/todo . 
