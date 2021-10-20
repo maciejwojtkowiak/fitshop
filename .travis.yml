@@ -7,6 +7,4 @@ script:
   - docker-compose run web python manage.py test
 
 after_success:
-  - echo "$password" | docker login -u "$username" --password-stdin
-  - docker build -t maciejwojtkowiak/todo . 
-  - docker push maciejwojtkowiak/todo . 
+  - echo "Tests completed, ready to merge!"
