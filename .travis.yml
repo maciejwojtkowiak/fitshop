@@ -3,13 +3,8 @@ sudo: required
 services: 
   - docker
 
-install:
-    - pip install -r requirements.txt
 script:
-    - docker-compose run web python manage.py test
+  - docker-compose run web python manage.py test
 
-deploy:
-  provider: script
-  script: docker_push.sh
-  on:
-    branch: master
+after_success:
+  - echo "Tests completed, ready to merge!"
