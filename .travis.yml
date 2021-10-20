@@ -3,12 +3,10 @@ sudo: required
 services: 
   - docker
 
-before_install:
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-
 script:
   - docker-compose run web python manage.py test
 
 after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t maciejwojtkowiak/todo . 
   - docker push maciejwojtkowiak/todo . 
