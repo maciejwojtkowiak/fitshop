@@ -3,9 +3,6 @@ sudo: required
 services: 
   - docker
 
-before_install:
-  - docker build -t maciejwojtkowiak/todo .
-
 script:
   - docker-compose run web python manage.py test
 
