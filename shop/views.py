@@ -179,19 +179,15 @@ class CartView(TemplateView):
 def create_checkout_session(request):
     if request.method == "GET":
         try:
+            line = []
             cart = Cart.objects.get(order_user=request.user)
+            for item in cart.order_items.all():
+              product={'price_data':{'currency': 'eur', 'product_data':{'name':item.title},'unit_amount': item.price}, 'quantity': '2'}
+              line.append(product)
+
             checkout_session = stripe.checkout.Session.create(
                 payment_method_types=['card', 'p24'], 
-                line_items=[{
-                'price_data': {
-                    'currency': 'eur',
-                    'product_data': {
-                    'name': "Total:"
-                    },
-                    'unit_amount': cart.total,
-                },
-                'quantity': 1,
-                }],
+                    line_items= line,
                 mode='payment',
                 success_url = request.build_absolute_uri(reverse('success-page'))+ '?session_id={CHECKOUT_SESSION_ID}',
                 cancel_url = request.build_absolute_uri(reverse('cancel-page')),
