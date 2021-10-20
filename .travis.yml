@@ -11,4 +11,4 @@ script:
 
 after_success:
   - docker build -t maciejwojtkowiak/todo . 
-  - docker push -t maciejwojtkowiak/todo . 
+  - docker push maciejwojtkowiak/todo . 
