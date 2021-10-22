@@ -9,7 +9,7 @@
     {% include 'shop/navbar.html' %}
     <form class = "sort__form" method="GET" action="{% url 'sort-page' %}">
         <h1 class="sort__header"> SORT ITEMS </h1>
-            <select class= "form-select sort__select" name="select">
+            <select class= "sort__select" name="select">
                 <option disabled selected> Sorting method</option>
                 <option value="v1">Price: low to high</option>
                 <option value="v2">Price: high to low</option>
