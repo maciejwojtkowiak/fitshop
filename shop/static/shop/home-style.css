@@ -29,9 +29,9 @@ body {
     margin: 15rem;
 }
 
-@media only screen and (max-width: 600px) {
-    .shop-container{
-        margin: 2rem;
+@media only screen and (max-width: 60rem) {
+    .shop-container {
+        margin: 5rem;
     }
 }
 
@@ -79,9 +79,6 @@ body {
     transition: all .1s;
 }
 
-.sort__prices{
-    margin-left: 2rem;
-}
 
 .sort__price-input {
     font-size: 1.6rem;
@@ -144,6 +141,13 @@ input[type=number] {
         
     }
 
+}
+
+.item-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .item-button {
