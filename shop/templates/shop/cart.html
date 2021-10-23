@@ -23,8 +23,8 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="total">Total: {{ cart.total_with_sign}} </div>
                     {% endfor %}
+                    <div class="total">Total: {{ cart.total_with_sign}} </div>
                     {% else %}
                         <div class="empty-cart">Your cart is empty</div>
                     {% endif %}
