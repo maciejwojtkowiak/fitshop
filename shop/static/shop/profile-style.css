@@ -1,17 +1,38 @@
 .user-container{
     font-size: 1.5rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
     margin: 8rem 0rem 8rem 0rem;
-    flex-wrap: wrap;
     border-radius: 2rem;
     border-style: solid;
     border-color: rgb(168, 167, 167);
    
 }
 
+@media only screen and (max-width: 60rem) {
+    .user-container {
+        display: grid;
+        place-items: center;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        margin: 2rem 0rem 2rem 0rem;
+    }
+}
+
+.update-form {
+    display: grid;
+    place-items: center;
+}
+
+@media only screen and (max-width: 60rem) {
+    .update-form {
+        display: grid;
+        place-items: center;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(9, 1fr);
+    }
+}
 .delete-button {
     text-decoration: none;
     background-image: linear-gradient(to right, rgb(248, 71, 71), red);
@@ -31,14 +52,18 @@
 
 
 .submit-button{
-    margin-left: 2rem;
     border: none;
     font-size: 1.8rem;
     font-weight: 600;
     padding: 1.2rem;
     text-decoration: none;
     border-radius: 1.5rem;
+}
 
+@media only screen and (max-width: 60rem) {
+    .submit-button {
+        margin-left: 0;
+    }
 }
 .update-header {
     font-size: 2rem;
