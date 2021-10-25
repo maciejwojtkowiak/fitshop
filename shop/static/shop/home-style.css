@@ -104,11 +104,9 @@ input[type=number] {
 
 .sort__select{
     font-family: 'Montserrat', sans-serif;
-    width: 20%;
-    height: 20%;
+    width: 30%;
     padding: .8rem;
     font-size: 1.6rem;
-    margin-left: 3rem;
 }
 
 @media only screen and (max-width: 60rem) {
