@@ -182,7 +182,7 @@ def create_checkout_session(request):
             line = []
             cart = Cart.objects.get(order_user=request.user)
             for item in cart.order_items.all():
-              product={'price_data':{'currency': 'eur', 'product_data':{'name':item.title},'unit_amount': item.price}, 'quantity': '2'}
+              product={'price_data':{'currency': 'eur', 'product_data':{'name':item.title},'unit_amount': item.price}, 'quantity': OrderItem.objects.get(cart=cart, item=item).quantity }
               line.append(product)
 
             checkout_session = stripe.checkout.Session.create(
