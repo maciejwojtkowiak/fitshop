@@ -33,6 +33,12 @@
         grid-template-rows: repeat(9, 1fr);
     }
 }
+
+.profile-buttons-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
 .delete-button {
     text-decoration: none;
     background-image: linear-gradient(to right, rgb(248, 71, 71), red);
