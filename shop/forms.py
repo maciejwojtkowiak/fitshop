@@ -49,9 +49,11 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         fields = ['user_image']
         widgets = {
-            'user_image': forms.FileInput(attrs={}),
-            
+            'user_image': forms.FileInput(attrs={'class': 'image-upload'}),
         }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['user_image'].label = ''
 
 class CommentCreationForm(forms.ModelForm):
 
