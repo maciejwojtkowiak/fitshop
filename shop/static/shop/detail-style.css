@@ -106,5 +106,12 @@
     font-size: 2rem;
 }
 
+#disabled-post-button {
+    background-image: linear-gradient(to right,
+    rgba(35, 36, 35, 0.774),
+    rgba(67, 70, 67, 0.753),
+    rgba(107, 109, 107, 0.726));
+}
+
 
 
