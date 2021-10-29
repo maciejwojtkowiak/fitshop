@@ -2,6 +2,6 @@
 {% block content %}
 <div class="order-info">
     <h1>Your order was successfully ordered</h1>
-    <button class="order-info__button button">Go back to the Home Page</button>
+    <a href="{% url 'home-page' %} " class="order-info__button button">Go back to the Home Page</a>
 </div>
 {% endblock content %}
