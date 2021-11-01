@@ -22,7 +22,7 @@ from django.core.paginator import Paginator
 
 
 stripe.api_key = os.environ.get('stripeAPI')
-history = []
+search_history = []
 
 def signup(request):
     if request.method == 'POST':
@@ -106,9 +106,9 @@ def searchView(request):
     if request.method == "GET":
         context = request.GET.get('search')
         if not context:
-            context = history[-1]
-        history.append(context)
-        items = Item.objects.all().filter(title__icontains=history[-1])
+            context = search_history[-1]
+        search_history.append(context)
+        items = Item.objects.all().filter(title__icontains=search_history[-1])
         try:
             sorting_method = request.GET.get('select')
             if sorting_method == 'v1':
