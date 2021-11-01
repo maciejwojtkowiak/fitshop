@@ -22,6 +22,7 @@ from django.core.paginator import Paginator
 
 
 stripe.api_key = os.environ.get('stripeAPI')
+history = []
 
 def signup(request):
     if request.method == 'POST':
@@ -104,9 +105,24 @@ class ShopDetailView(VisitCounter, DetailView):
 def searchView(request):
     if request.method == "GET":
         context = request.GET.get('search')
-        items = Item.objects.all().filter(title__icontains=context)
+        if not context:
+            context = history[-1]
+        history.append(context)
+        items = Item.objects.all().filter(title__icontains=history[-1])
+        try:
+            sorting_method = request.GET.get('select')
+            if sorting_method == 'v1':
+                items = items.order_by('price')
+                return render(request, 'shop/search.html', {'items': items})
+            if sorting_method == 'v2':
+                items = items.order_by('-price')
+                return render(request, 'shop/search.html', {'items': items})
+            else:
+                return render(request, 'shop/search.html', {'items': items})
+        except UnboundLocalError:
+            return redirect('home-page')
+        
 
-    return render(request, 'shop/search.html', {'items': items})
 
 def sortView(request): 
     if request.method == "GET":
