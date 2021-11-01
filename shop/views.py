@@ -103,14 +103,14 @@ class ShopDetailView(VisitCounter, DetailView):
                 return HttpResponse('detail-page')
         
 def searchView(request):
-    if request.method == "GET":
-        context = request.GET.get('search')
+    if request.method == "POST":
+        context = request.POST.get('search')
         if not context:
             context = search_history[-1]
         search_history.append(context)
         items = Item.objects.all().filter(title__icontains=search_history[-1])
         try:
-            sorting_method = request.GET.get('select')
+            sorting_method = request.POST.get('select')
             if sorting_method == 'v1':
                 items = items.order_by('price')
                 return render(request, 'shop/search.html', {'items': items})
@@ -125,9 +125,9 @@ def searchView(request):
 
 
 def sortView(request): 
-    if request.method == "GET":
+    if request.method == "POST":
         try:
-            sorting_method = request.GET.get('select')
+            sorting_method = request.POST.get('select')
             if sorting_method == 'v1':
                 items = Item.objects.order_by('price')
             if sorting_method == 'v2':
