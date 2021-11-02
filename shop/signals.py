@@ -10,9 +10,9 @@ def profile_creation(sender, instance, created, **kwargs):
         Cart.objects.create(order_user=instance)
 
 @receiver(post_save, sender=User)
-def profile_creation(sender, instance, **kwargs):
+def profile_update(sender, instance, **kwargs):
         instance.profile.save()
 
 @receiver(pre_delete, sender=Item)
-def mymodel_delete(sender, instance, **kwargs):
+def image_deletion(sender, instance, **kwargs):
     instance.image.delete(False)
