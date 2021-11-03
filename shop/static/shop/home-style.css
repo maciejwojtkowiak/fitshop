@@ -31,7 +31,7 @@ body {
 
 @media only screen and (max-width: 60rem) {
     .shop-container {
-        margin: 5rem;
+        margin: 0rem;
     }
 }
 
