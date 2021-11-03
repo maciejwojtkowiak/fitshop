@@ -3,34 +3,34 @@
     display: grid;
     grid-template-columns: 1fr;
     place-items: center;
-    margin: 8rem 0rem 8rem 0rem;
+    margin: 0rem 0rem 0rem 0rem;
     border-radius: 2rem;
     border-style: solid;
     border-color: rgb(168, 167, 167);
    
 }
 
+
 @media only screen and (max-width: 60rem) {
     .user-container {
         display: grid;
-        place-items: center;
         grid-template-columns: 1fr;
         grid-template-rows: repeat(2, 1fr);
-        margin: 2rem 0rem 2rem 0rem;
+        margin: 0;
     }
 }
 
 .update-form {
     display: grid;
     place-items: center;
+
 }
 
 @media only screen and (max-width: 60rem) {
     .update-form {
         display: grid;
-        place-items: center;
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(9, 1fr);
+        grid-template-rows: repeat(5, 1fr);
     }
 }
 
@@ -93,5 +93,5 @@
 }
 
 .user-img {
-    margin: 0rem 0rem 5rem 0rem;
+    margin: au;
 }

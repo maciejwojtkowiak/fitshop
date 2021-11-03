@@ -12,7 +12,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     
 }
-@media only screen and (max-width: 60rem) {
+@media only screen and (max-width: 95rem) {
     .navbar__list{
             grid-template-columns: 1fr;
             grid-template-rows: 1fr 1fr 1fr;
@@ -20,6 +20,7 @@
         
     }
 }
+
 
 .navbar__rightside {
    justify-self: flex-end;

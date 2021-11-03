@@ -24,3 +24,14 @@
     color: white;
 }
 
+.message-box {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.message { 
+   text-decoration: underline;
+}
+

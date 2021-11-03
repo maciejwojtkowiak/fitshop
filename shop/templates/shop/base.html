@@ -23,7 +23,9 @@
     <body>
         {% if messages %}
             {% for message in messages %}
-                <div class = "messages">{{ message }}</div>
+                <div class = "message-box">
+                    <div class="message">{{ message }}</div>
+                </div>
             {% endfor %}
         {% endif %} 
         {% block content %}
