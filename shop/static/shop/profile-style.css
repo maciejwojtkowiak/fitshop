@@ -7,6 +7,7 @@
     border-radius: 2rem;
     border-style: solid;
     border-color: rgb(168, 167, 167);
+    overflow-y: hidden;
    
 }
 
@@ -15,7 +16,6 @@
     .user-container {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(2, 1fr);
         margin: 0;
     }
 }
@@ -23,19 +23,13 @@
 .update-form {
     display: grid;
     place-items: center;
-
 }
 
 @media only screen and (max-width: 60rem) {
     .update-form {
         display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(5, 1fr);
+        place-items: center;
     }
-}
-
-.image-upload{
-    margin-left: 10.5rem;
 }
 
 
@@ -83,15 +77,8 @@
 }
 .username{
     font-size: 5rem;
-    flex-basis: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-bottom: 6rem;
     text-transform: uppercase;
     letter-spacing: 1rem;
 }
 
-.user-img {
-    margin: au;
-}
