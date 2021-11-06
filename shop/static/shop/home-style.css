@@ -29,7 +29,7 @@ body {
     margin: 15rem;
 }
 
-@media only screen and (max-width: 60rem) {
+@media only screen and (max-width: 50em) {
     .shop-container {
         margin: 0rem;
     }
@@ -50,7 +50,7 @@ body {
     letter-spacing: .4rem;
 }
 
-@media only screen and (max-width: 60rem) {
+@media only screen and (max-width: 50em) {
     .sort__header {
         margin-right: 0;
     }
@@ -109,7 +109,7 @@ input[type=number] {
     font-size: 1.6rem;
 }
 
-@media only screen and (max-width: 60rem) {
+@media only screen and (max-width: 50em) {
     .sort__select {
         width:100%;
         height: 100%;
@@ -135,9 +135,17 @@ input[type=number] {
 
 
 
-@media only screen and (max-width: 60rem) {
+@media only screen and (max-width: 50em) {
     .shop {
        grid-template-columns: 1fr;
+        
+    }
+
+}
+
+@media only screen and (min-width: 60em) {
+    .shop {
+       grid-template-columns: 1fr 1fr;
         
     }
 
