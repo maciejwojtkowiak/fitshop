@@ -7,12 +7,10 @@
     border-radius: 2rem;
     border-style: solid;
     border-color: rgb(168, 167, 167);
-    overflow-y: hidden;
-   
 }
 
 
-@media only screen and (max-width: 60rem) {
+@media only screen and (max-width: 50em) {
     .user-container {
         display: grid;
         grid-template-columns: 1fr;
@@ -25,7 +23,7 @@
     place-items: center;
 }
 
-@media only screen and (max-width: 60rem) {
+@media only screen and (max-width: 50em) {
     .update-form {
         display: grid;
         place-items: center;
@@ -65,7 +63,7 @@
     border-radius: 1.5rem;
 }
 
-@media only screen and (max-width: 60rem) {
+@media only screen and (max-width: 50em) {
     .submit-button {
         margin-left: 0;
     }
