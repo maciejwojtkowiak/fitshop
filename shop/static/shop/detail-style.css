@@ -25,6 +25,7 @@
 @media only screen and (max-width: 50em) {
     .detail__image {
        margin: 0;
+       margin-top: 2rem;
     }
 }
 
@@ -39,7 +40,6 @@
 .detail__visits {
     font-size: 1.1rem;
     display: inline-block;
-    margin-left: 1.2rem;
     font-weight: 100;
     opacity: 0.62;
 }
@@ -49,6 +49,15 @@
     margin-top: 6rem;
 }
 
+@media only screen and (max-width: 50em) {
+    .detail__item-details {
+       display: flex;
+       flex-direction: column;  
+       justify-content: center;
+       align-items: center;
+    }
+}
+
 
 .detail__item-price {
     font-weight: 500;
@@ -56,6 +65,12 @@
 
 .detail__buy_button {
     margin-top: 1.5rem;
+}
+
+@media only screen and (max-width: 50em) {
+    .detail__buy_button {
+       margin-bottom: 1.5rem;
+    }
 }
 
 .comment-section-grid{

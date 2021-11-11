@@ -1,4 +1,5 @@
 from django.db.models import fields
+from django.forms import widgets
 from shop.models import Comment, Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -43,6 +44,10 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User 
         fields = ['username', 'email']
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'input-style'}),
+            'email': forms.TextInput(attrs={'class': 'input-style'})
+        }
 
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
