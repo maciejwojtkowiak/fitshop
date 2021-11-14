@@ -7,4 +7,4 @@ script:
   - docker-compose run web python manage.py test
 
 after_success:
-  - echo "Tests completed, ready to merge!"
+  - travis_script.sh

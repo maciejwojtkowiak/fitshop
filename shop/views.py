@@ -83,7 +83,7 @@ class ShopDetailView(VisitCounter, DetailView):
     def post(self, request, pk):
         if 'buy' in request.POST:
             item = get_object_or_404(Item, id=pk)
-            cart, __ = Cart.objects.get_or_create(order_user=request.user)
+            cart = Cart.objects.get(order_user = request.user)
             orderItem, created = OrderItem.objects.get_or_create(item=item, cart=cart)
             if not created: 
                 orderItem.quantity = F('quantity') + 1

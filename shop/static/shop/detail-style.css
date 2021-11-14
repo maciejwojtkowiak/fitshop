@@ -2,6 +2,7 @@
     box-shadow: 3px 3px 5px 6px #ccc;
     display: flex;
     flex-direction: row;
+    padding-bottom: 2rem;
     
 }
 
@@ -73,18 +74,17 @@
     }
 }
 
-.comment-section-grid{
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
+
+.comment-section {
+    padding-bottom: 2rem;
 }
+
 
 .comment {
     width: 100%;
     margin: 2rem 0rem 2rem 0rem;
     display: grid;
-    grid-template-columns: 6rem 100rem ;
-    grid-template-rows: 5rem;
+    grid-template-columns: 6rem minmax(20px, auto);
     border: 2px;
     border-radius: 2rem;
     border-style: solid;
@@ -113,17 +113,14 @@
    font-size: 1.4rem;
 }
 
+
+
 .comment-form {
-    margin-top: 2rem;
-    margin-left: auto;
+   margin-top: 2rem;
+   display: grid;
+   place-items: center;
 }
 
-@media only screen and (max-width: 50em) {
-    .comment-form {
-       margin: 0;
-       margin-left: 0;
-    }
-}
 
 .comment-field{
     padding: 1.2rem;
@@ -142,9 +139,9 @@
 
 .comment-button {
     margin: auto;
-    margin-top: 2rem;
+    margin-top: 1rem;
     display: block;
-    padding: 1rem 1.5rem 1rem 1.5rem;
+    padding: 1rem 2rem 1rem 2rem;
     font-size: 2rem;
 }
 
