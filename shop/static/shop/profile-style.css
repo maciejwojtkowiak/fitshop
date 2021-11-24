@@ -9,25 +9,9 @@
     border-color: rgb(168, 167, 167);
 }
 
-
-@media only screen and (max-width: 50em) {
-    .user-container {
-        display: grid;
-        grid-template-columns: 1fr;
-        margin: 0;
-    }
-}
-
 .update-form {
     display: grid;
     place-items: center;
-}
-
-@media only screen and (max-width: 50em) {
-    .update-form {
-        display: grid;
-        place-items: center;
-    }
 }
 
 
@@ -63,11 +47,6 @@
     border-radius: 1.5rem;
 }
 
-@media only screen and (max-width: 50em) {
-    .submit-button {
-        margin-left: 0;
-    }
-}
 .update-header {
     font-size: 2rem;
     text-align: center;
@@ -79,4 +58,26 @@
     text-transform: uppercase;
     letter-spacing: 1rem;
 }
+
+
+/* media queries */
+
+
+@media only screen and (max-width: 50em) {
+    .user-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin: 0;
+    }
+
+    .update-form {
+        display: grid;
+        place-items: center;
+    }
+
+    .submit-button {
+        margin-left: 0;
+    }
+}
+
 

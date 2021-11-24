@@ -20,13 +20,6 @@
     rgba(75, 196, 75, 0.726));
 }
 
-@media only screen and (max-width: 60rem) {
-    .cart-container {
-        grid-template-columns: 100%; 
-    }
-}
-
-
 .cart-specification-row {
     border-radius: 1rem;
     background-image: linear-gradient(to right,
@@ -145,3 +138,11 @@
     font-weight: 900;
 }
 
+
+/* media queries */ 
+
+@media only screen and (max-width: 60em) {
+    .cart-container {
+        grid-template-columns: 100%; 
+    }
+}
