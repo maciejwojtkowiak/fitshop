@@ -12,37 +12,12 @@
     grid-template-columns: 1fr 1fr 1fr;
     
 }
-@media only screen and (max-width: 20em) {
-    .navbar__list{
-            padding: 2rem;
-        
-    }
-}
-@media only screen and (max-width: 45em) {
-    .navbar__list{
-            grid-template-columns: 1fr;
-            grid-template-rows: repeat(3, 5rem); 
-            place-items: center;
-        
-    }
-}
 
 
 .navbar__rightside {
    justify-self: flex-end;
    align-items: flex-end;
 }
-
-
-@media only screen and (max-width: 50em) {
-    .navbar__rightside {
-        justify-self: center;
-        align-items: flex-end;
-        
-    }
-
-}
-
 
 .navbar__search-form {
     display: flex;
@@ -62,28 +37,12 @@
     
 }
 
-@media only screen and (max-width: 50em) {
-    .navbar__search-text {
-        width: 90%;
-        
-    }
-
-}
 
 .navbar__search-text:focus {
     transition: all .5s;
     width: 90%;
     outline-style: none;
 }
-
-@media only screen and (max-width: 50em) {
-    .navbar__search-text:focus {
-        width: 100%;
-        
-    }
-
-}
-
 
 .navbar__link{
     text-decoration: none;
@@ -104,9 +63,43 @@
     margin-right: 2.2rem;
 }
 
+@media only screen and (max-width: 55em) {
+    .navbar__rightside {
+        justify-self: center;
+        align-items: flex-end;
+        
+    }
+
+    .navbar__list{
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 5rem); 
+        place-items: center;
+    
+}
+
+}
+
 @media only screen and (max-width: 50em) {
     .navbar__register {
         margin: 0;
+        
+    }
+
+    .navbar__search-text:focus {
+        width: 100%;
+        
+    }
+
+    .navbar__search-text {
+        width: 90%;
+        
+    }
+}
+
+
+@media only screen and (max-width: 20em) {
+    .navbar__list{
+            padding: 2rem;
         
     }
 }

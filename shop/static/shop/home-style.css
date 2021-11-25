@@ -29,12 +29,6 @@ body {
     margin: 15rem;
 }
 
-@media only screen and (max-width: 65em) {
-    .shop-container {
-        margin: 0rem;
-    }
-}
-
 
 .sort__form{
     padding: 3rem 3rem 3rem 3rem;
@@ -49,14 +43,6 @@ body {
     font-size: 1.6rem;
     letter-spacing: .4rem;
 }
-
-@media only screen and (max-width: 50em) {
-    .sort__header {
-        margin-right: 0;
-    }
-
-}
-
 
 
 .sort__submit {
@@ -109,15 +95,6 @@ input[type=number] {
     font-size: 1.6rem;
 }
 
-@media only screen and (max-width: 50em) {
-    .sort__select {
-        width:100%;
-        height: 100%;
-        margin: 0 1rem 0 1rem
-    }
-
-}
-
 
 .shop {
     padding: 3rem;
@@ -125,7 +102,7 @@ input[type=number] {
     box-shadow: 1px 12px 30px rgba(0, 0, 0, 0.26), 1px 12px 10px rgba(0, 0, 0, 0.178);
     background-color: rgb(255, 255, 255);
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 8rem 10rem;
     grid-auto-rows: minmax(100px, auto);
     justify-items: center;
@@ -133,23 +110,6 @@ input[type=number] {
     overflow: auto;
 }
 
-
-
-@media only screen and (max-width: 50em) {
-    .shop {
-       grid-template-columns: 1fr;
-        
-    }
-
-}
-
-@media only screen and (min-width: 50em) {
-    .shop {
-       grid-template-columns: 1fr 1fr;
-        
-    }
-
-}
 
 .item-container {
     display: flex;
@@ -180,5 +140,26 @@ input[type=number] {
 }
 
 
+/* media queries */
 
+@media only screen and (max-width: 50em) {
+    .shop {
+       grid-template-columns: 1fr;
+    }
+    .sort__select {
+        width:100%;
+        height: 100%;
+        margin: 0 1rem 0 1rem
+    }
+    .sort__header {
+        margin-right: 0;
+    }
+}
+
+
+@media only screen and (max-width: 65em) {
+    .shop-container {
+        margin: 0rem;
+    }
+}
 
