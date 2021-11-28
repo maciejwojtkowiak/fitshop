@@ -1,7 +1,7 @@
 
     <div class='navbar__list'>
                 <a class=" navbar__link" href="{% url 'home-page' %}">Home</a>
-            <form action="{% url 'search-page'%}" class="navbar__search-form" method="POST"> {% csrf_token %}
+            <form action="{% url 'search-page'%}" class="navbar__search-form" method="GET"> 
                 <input name="search" class="navbar__search-text" type="text" placeholder="Search for an item.">
             </form>
         {% if user.is_authenticated  %}

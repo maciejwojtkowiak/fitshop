@@ -81,8 +81,8 @@ class ShopDetailView(VisitCounter, DetailView):
         return context
 
     def post(self, request, pk):
+        item = get_object_or_404(Item, id=pk)
         if 'buy' in request.POST:
-            item = get_object_or_404(Item, id=pk)
             cart = Cart.objects.get(order_user = request.user)
             orderItem, created = OrderItem.objects.get_or_create(item=item, cart=cart)
             if not created: 
@@ -98,19 +98,19 @@ class ShopDetailView(VisitCounter, DetailView):
                 comment.comment_user = request.user
                 comment.comment_item = Item.objects.get(id=pk)
                 comment.save()
-                return HttpResponse('detail-page')
+                return redirect('detail-page', pk=item.id)
             else:
-                return HttpResponse('detail-page')
+                return redirect('detail-page', pk=item.id)
         
 def searchView(request):
-    if request.method == "POST":
-        context = request.POST.get('search')
+    if request.method == "GET":
+        context = request.GET.get('search')
         if not context:
             context = search_history[-1]
         search_history.append(context)
         items = Item.objects.all().filter(title__icontains=search_history[-1])
         try:
-            sorting_method = request.POST.get('select')
+            sorting_method = request.GET.get('select')
             if sorting_method == 'v1':
                 items = items.order_by('price')
                 return render(request, 'shop/search.html', {'items': items})
@@ -125,9 +125,9 @@ def searchView(request):
 
 
 def sortView(request): 
-    if request.method == "POST":
+    if request.method == "GET":
         try:
-            sorting_method = request.POST.get('select')
+            sorting_method = request.GET.get('select')
             if sorting_method == 'v1':
                 items = Item.objects.order_by('price')
             if sorting_method == 'v2':
