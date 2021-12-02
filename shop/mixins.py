@@ -4,8 +4,9 @@ from django.db.models import F
 class VisitCounter(SingleObjectMixin):
     def get_object(self, *args, **kwargs):
         obj = super().get_object(*args, **kwargs)
-        old_visits = obj.visits
-        obj.visits = F('visits') + 1
+        print(obj.visits)
+        old_visits = obj.visits 
+        obj.visits = F('visits') + 1 
         obj.save()
         obj.visits = old_visits + 1
         return obj 
